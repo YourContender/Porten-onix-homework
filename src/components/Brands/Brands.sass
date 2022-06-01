@@ -1,0 +1,52 @@
+.brands
+    height: 360px
+    width: 100%
+    background-color: #0f0f0f
+    display: flex
+    flex-direction: column 
+    align-items: center
+    h4
+        font-weight: bold
+        font-size: 36px
+        line-height: 48px
+        text-align: center
+        text-transform: uppercase
+        color: #fff
+    &_list
+        display: flex
+        justify-content: center
+        img
+            margin-right: 15px 
+    .line
+        width: 150px
+        height: 1px
+        background-color: #fff
+        margin: 50px auto
+
+@media (max-width: 1027px) 
+    .brands
+        margin-top: 320px
+        img
+            width: 230px
+
+@media (max-width: 991px)
+    .brands
+        margin-top: 320px
+        img
+            width: 180px
+
+@media (max-width: 770px)   
+    .brands
+        margin-top: 490px
+        &_list
+            flex-wrap: wrap
+            img
+                width: 160px
+
+@media (max-width: 575px)
+    .brands
+        margin-top: 190px
+
+@media (max-width: 480px)
+    .brands
+        height: 450px

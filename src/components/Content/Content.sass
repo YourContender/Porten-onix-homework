@@ -1,0 +1,219 @@
+.content 
+    width: 100%
+    height: 650px
+    display: flex
+    &_season
+        width: 50%
+        height: 650px
+        background-color: #000
+        &_list
+            display: flex
+            justify-content: center
+            .item
+                text-align: center
+                color: #fff
+                .text
+                    margin-top: 25px
+            .block
+                width: 190px
+                height: 250px
+                background-color: #191b1c
+                display: flex
+                justify-content: center
+                align-items: center
+                margin-left: 10px                       
+                img
+                    width: 200px           
+        &_title
+            text-align: center
+            margin: 0 auto
+            margin-top: 75px
+            font-family: 'Playfair Display', serif
+            font-weight: bold
+            font-size: 22px
+            text-align: center
+            text-transform: uppercase
+            color: #fff
+            .line
+                margin: 0 auto
+                width: 150px
+                height: 1px
+                background-color: #fff
+                margin-top: 50px
+                margin-bottom: 50px
+
+    &_catalog
+        position: relative
+        width: 50%
+        height: 650px
+        background: url('../../img/bg/catalog_bg.png') center (center / cover) no-repeat
+        object-fit: cover
+    &_collection
+        position: absolute
+        width: 450px
+        top: 60%
+        left: 50%
+        transform: translateX(-50%)
+        text-align: center
+        font-family: Playfair Display
+        .text_block
+            font-weight: bold
+            font-size: 30px
+            text-align: center
+            text-transform: uppercase
+            color: #fff
+            letter-spacing: 0.5em
+        .btn_block
+            margin-top: 45px
+            background: none
+            color: #fff
+            width: 180px
+            height: 50px
+            border: 2px solid #fff
+            border-radius: 5px
+            font-size: 22px
+            letter-spacing: 0.1em
+            text-transform: uppercase
+            cursor: pointer
+            &:hover
+                background-color: #fff
+                color: #000
+                transition: .7s all
+
+@media (max-width: 1200px) 
+    .content
+        height: 580px
+        &_season
+            height: 580px
+            &_title
+                margin-top: 0
+            &_list
+                margin-left: 27px
+                .block
+                    height: 200px
+                    width: 90%
+                    margin: 0
+                    padding: 0
+                    img
+                        width: 165px
+                .item
+                    .text
+                        width: 145px
+                        font-size: 14px
+
+@media (max-width: 1027px) 
+    .content
+        height: 520px
+        &_season
+            height: 520px
+            
+        &_catalog
+            height: 520px
+
+@media (max-width: 991px)
+    .content 
+        height: 500px
+        &_season
+            height: 500px
+            &_list
+                margin-left: 17px
+                .block
+                    height: 155px
+                    img
+                        width: 145px
+        &_catalog
+            height: 500px
+        &_collection
+            width: 350px
+            .text_block
+                font-size: 21px
+            .btn_block
+                width: 200px
+                font-size: 20px
+    
+@media (max-width: 875px)
+    .content
+        display: flex
+        flex-direction: column
+        align-items: center
+        height: 1000px
+        &_season
+            &_title
+                .line
+                    margin-top: 10px
+                    margin-bottom: 40px
+        &_catalog
+            width: 100%
+            height: 80%
+
+@media (max-width: 575px)
+    .content
+        height: 870px
+        &_season
+            height: 650px
+
+@media (max-width: 480px)
+    .content 
+        height: 757px
+        &_season
+            &_title
+                h2
+                    font-size: 28px
+            &_list
+                .block
+                    width: 90%
+                    img
+                        width: 125px
+                .item
+                    .text
+                        width: 90px
+                        margin-bottom: 20px
+                        margin-left: 10px
+        &_catalog
+            height: 80%
+
+@media (max-width: 480px)
+    .content 
+        height: 670px
+        &_season
+            &_title
+                h2
+                    font-size: 24px
+            &_list
+                .block
+                    width: 90%
+                    img
+                        width: 110px
+                .item
+                    .text
+                        width: 78px
+        &_catalog
+            height: 94%
+        &_collection
+            margin-top: -50px
+            .text_block
+                font-size: 16px
+            .btn_block
+                width: 175px
+                font-size: 18px
+
+@media (max-width: 320px)
+    .content 
+        height: 670px
+        &_season
+            &_title
+                h2
+                    font-size: 24px
+            &_list
+                .block
+                    width: 85%
+                    height: 140px
+                    img
+                        width: 100px
+                .item
+                    .text
+                        font-size: 14px
+                        width: 68px
+
+        &_collection
+            width: 290px

@@ -1,0 +1,118 @@
+.title 
+    color: #fff
+    font-weight: bold
+    font-size: 36px
+    line-height: 48px
+    text-align: center
+    text-transform: uppercase
+    margin-top: 100px
+    letter-spacing: 0.5em
+    .line
+        width: 150px
+        height: 1px
+        background-color: #fff
+        margin: 50px auto
+
+.commercial 
+    display: flex
+    flex-wrap: wrap
+    margin: 0 auto
+    align-items: center
+    margin-bottom: 150px 
+    height: 700px
+    max-width: 1100px
+    &_item
+        text-align: center
+        color: #fff
+        width: 240px
+        margin-left: 17px
+        margin-top: 50px
+        cursor: pointer
+        &_block
+            background-color: #191b1c
+            width: 240px
+            height: 270px
+            img
+                margin-top: 17px 
+        &_text
+            margin-top: 10px
+    &_btn
+        display: none
+
+
+@media (max-width: 1200px) 
+    .container 
+        .title 
+            margin-top: 55px
+            .line
+                margin: 10px auto
+        .commercial
+            justify-content: center
+            &_item
+                margin-top: 24px
+                &_block
+                    display: flex
+                    justify-content: center
+                    align-items: center
+                    height: 250px
+                    width: 230px
+                    img
+                        width: 200px
+
+        &_collection
+            .text_block
+                font-size: 24px
+
+@media (max-width: 991px)
+    .container 
+        width: 100%
+        .commercial
+            justify-content: center
+            &_item
+                &_block
+                    width: 200px
+                    height: 215px
+                    img
+                        width: 185px
+                &_text
+                    width: 200px
+                    font-size: 15px
+
+@media (max-width: 575px)
+    .commercial
+        &_item
+            &:nth-child(5)
+                display: none
+            &:nth-child(6)
+                display: none
+            &:nth-child(7)
+                display: none
+            &:nth-child(8)
+                display: none
+        &_btn
+            display: block
+            position: absolute
+            left: 50%
+            transform: translateX(-50%)
+            margin-top: -100px
+            background: none
+            color: #fff
+            width: 160px
+            height: 50px
+            border: 2px solid #fff
+            border-radius: 5px
+            font-size: 18px
+            letter-spacing: 0.1em
+            text-transform: uppercase
+            cursor: pointer
+            &:hover
+                background-color: #fff
+                color: #000
+                transition: .7s all
+    
+@media (max-width: 513px)
+    .commercial
+        height: 1100px
+        margin-bottom: 195px
+        &_item
+            margin-left: 49px

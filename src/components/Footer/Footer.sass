@@ -1,0 +1,184 @@
+.footer
+    width: 100%
+    height: 400px
+    background: url('../../img/bg/footer_bg.png') center (center / cover) no-repeat
+    &_block
+        display: flex
+        justify-content: center
+        padding-top: 40px
+      
+    &_about
+        height: 100%
+        h4
+            font-weight: bold
+            font-size: 24px
+            line-height: 48px
+            text-transform: uppercase
+            letter-spacing: 0.4em
+            color: #fff
+        &_box
+            width: 350px
+            height: 140px
+            color: #fff
+
+    &_category
+        width: 350px
+        height: 100%
+        margin-left: 15px
+        h4
+            font-weight: bold
+            font-size: 24px
+            line-height: 48px
+            text-transform: uppercase
+            letter-spacing: 0.4em
+            color: #fff
+            margin-left: 30px
+        &_list
+            display: flex
+            max-width: 340px
+            flex-wrap: wrap
+            .item
+                background-color: #0f0f0f
+                margin-left: 28px
+                margin-top: 10px 
+                height: 41px
+                width: auto
+                display: flex
+                align-items: center
+                padding: 0px 10px
+                cursor: pointer
+                span
+                    font-weight: normal
+                    font-size: 14px
+                    color: #D0D0D0
+                &:hover
+                    background-color: #969696
+                    span
+                        color: #000
+    &_link
+        width: 500px
+        h4
+            font-weight: bold
+            font-size: 24px
+            line-height: 48px
+            text-transform: uppercase
+            letter-spacing: 0.4em
+            color: #fff
+        span
+            font-weight: normal
+            font-size: 14px
+            color: #fff
+
+        &_box
+            margin-top: 38px
+            display: flex
+            align-items: center
+            input
+                width: 210px
+                height: 42px
+                background: rgba(255, 255, 255, 0.4)
+                &::-webkit-input-placeholder 
+                    color: #000
+                    font-size: 18px
+
+            button
+                margin-top: 2px
+                width: 140px
+                height: 47px
+                background: #0f0f0f
+                font-weight: normal
+                font-size: 14px
+                letter-spacing: 0.05em
+                text-transform: uppercase
+                color: #fff
+                border: 3px solid #0f0f0f
+
+.subfooter 
+    width: 100%
+    height: 70px
+    display: flex
+    justify-content: space-around
+    align-items: center
+    color: #fff
+    .info
+        display: flex
+        flex-direction: column
+
+@media (max-width: 991px)
+    .footer 
+        &_about
+            width: 290px
+            padding-left: 15px
+            &_box
+                width: 250px
+                font-size: 14px
+        &_category
+            width: 290px
+            padding-right: 50px
+        &_link
+            width: 300px
+            margin-right: 20px
+            span
+                display: block
+                width: 240px
+                
+            &_box
+                input
+                    width: 114px
+                    height: 24px
+                    border: none
+                button
+                    width: 110px
+                    height: 28px
+                    font-size: 12px
+
+@media (max-width: 770px)
+    .footer
+        &_about
+            display: none
+        &_category
+            padding-right: 17px
+            h4
+                font-size: 17px
+        &_link
+            h4
+                font-size: 17px
+            span
+                font-size: 12px
+                width: 195px
+
+@media (max-width: 575px)
+    .footer
+        &_about
+            display: none
+
+@media (max-width: 480px)
+    .footer
+        &_link
+            span
+                display: none
+            &_box
+                display: flex
+                flex-direction: column
+                input
+                    width: 130px
+
+@media (max-width: 320px)
+    .footer
+        &_category
+            padding-right: 13px
+        &_block
+            display: flex
+            flex-direction: column
+            padding: 0
+        &_link
+            h4
+                margin-left: 44px
+            span
+                display: none
+            &_box
+                align-items: flex-start
+                padding-left: 44px
+                input
+                    width: 170px
+                    height: 35px

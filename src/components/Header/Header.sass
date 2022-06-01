@@ -1,0 +1,77 @@
+.container
+    width: 100%
+    margin: 0 auto
+    
+.header
+    display: flex
+    justify-content: space-between
+    height: 44px
+    &_info
+        display: flex
+        align-items: center
+        margin-left: 20px
+        &_link
+            display: flex
+            align-items: center
+            color: #969696
+            margin-right: 15px
+            padding-right: 15px
+            border-right: 2px solid #969696
+            img
+                padding-right: 5px 
+            span
+                font-size: 12px
+    
+    &_log
+        display: flex
+        align-items: center
+        color: #969696
+        margin-right: 20px
+        span
+            font-size: 12px
+            margin-left: 10px
+
+@media (max-width: 1200px) 
+    .header
+        &_info
+            margin-left: 10px
+        &_log
+            margin-right: 10px
+
+@media (max-width: 991px)
+    .header
+        &_info
+            margin-left: 20px
+        &_log
+            margin-right: 45px
+
+
+@media (max-width: 770px)
+    .header
+        &_info
+            margin-left: 28px
+            &_link
+                span
+                    font-size: 11px
+        &_log
+            margin-right: 20px
+
+@media (max-width: 575px)
+    .header
+        &_info
+            &_link
+                border-right: none
+                &:nth-child(2)
+                    display: none
+                &:nth-child(3)
+                    display: none
+                span
+                    font-size: 14px
+
+@media (max-width: 480px)
+    .header
+        &_info
+            &_link
+                span
+                    font-size: 12px
+                    margin-left: -5px
