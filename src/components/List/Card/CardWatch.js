@@ -24,17 +24,17 @@ class CardWatch extends React.Component {
         const activeClass = active ? "test_active" : '';
 
         return (
-            <div className={activeClass}>
-                <Card 
-                    onDragStart={() => dragStartHandler(item)}
-                    onDragLeave={() => dragEndHandler()}
-                    onDragEnd={() => dragEndHandler()}
-                    onDragOver={(e) => dragOverHandler(e, item)}
-                    onDrop={(e) => dropHandler(e, item)}
-                    draggable={true}
-                    className="card_container" 
-                    onClick={() => this.onActiveItem(id)}
-                >
+            <Card 
+                onDragStart={() => dragStartHandler(item)}
+                onDragLeave={() => dragEndHandler()}
+                onDragEnd={() => dragEndHandler()}
+                onDragOver={(e) => dragOverHandler(e, item)}
+                onDrop={(e) => dropHandler(e, item)}
+                draggable={true}
+                className="card_container" 
+                onClick={() => this.onActiveItem(id)}
+            >
+                <div className={activeClass}>
                     <Card.Img className="card_img" variant="top" src={photoLink} />
                     <Card.Body>
                         <Card.Title>{title}</Card.Title>
@@ -51,12 +51,12 @@ class CardWatch extends React.Component {
                         
                         <ListGroupItem><strong>Country: </strong>{country}</ListGroupItem>
                     </ListGroup>
-                    <Card.Body>
+                    <div className="card_btns">
                         <Button variant="danger" className="delete_btn" onClick={() => this.props.removeItem(id)}>Удалить</Button>
                         <Button variant="primary">Купить</Button>
-                    </Card.Body>
-                </Card>
-            </div>
+                    </div>
+                </div>
+            </Card>
         )
     }
 }

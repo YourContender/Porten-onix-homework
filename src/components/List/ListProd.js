@@ -34,7 +34,7 @@ class ListProd extends React.Component {
 
     filteredPriceMethod = (id) => {
         this.setState(({filtered}) => ({
-            filtered: [...filtered].sort((a, b) => (a.price - b.price) * (id === 1 ? 1 : -1))
+            filtered: [...filtered].sort((a, b) => (a.price - b.price) * (id == 1 ? 1 : -1))
         }))
     }
 
@@ -68,11 +68,8 @@ class ListProd extends React.Component {
 
     onActiveCard = (id) => {  
         this.setState(({filtered}) => ({
-            filtered: filtered.map(item => {
-                if (item.id === id) {
-                    item.active = !item.active
-                }
-                return item
+            filtered: [...filtered].map(item => {
+                return {...item, active: item.id === id ? !item.active : item.active}
             })
         }))
     }
