@@ -11,7 +11,7 @@ class CardWatch extends React.Component {
             id: this.props.item.id
         }
     }
-
+    
     onActiveItem = (id) => {
         this.props.onActiveCard(id)
     }   
@@ -22,6 +22,7 @@ class CardWatch extends React.Component {
         const item = this.props.item;
         const photoLink = typeof url === 'string' ? url : url.path + '.' + url.extension;
         const activeClass = active ? "test_active" : '';
+        console.log(item.currency);
 
         return (
             <Card 
@@ -47,9 +48,9 @@ class CardWatch extends React.Component {
                         <ListGroupItem className="card_descr">
                             <strong className="card_descr_price">Price: </strong> {price}
                         </ListGroupItem>
-                        <ListGroupItem><strong>Currency: </strong>{currency}</ListGroupItem> 
+                        <ListGroupItem><strong>Currency: </strong>{currency ? currency :  this.props.defaultCurrency}</ListGroupItem> 
                         
-                        <ListGroupItem><strong>Country: </strong>{country}</ListGroupItem>
+                        <ListGroupItem><strong>Country: </strong>{country ? country :  this.props.defaultCountry}</ListGroupItem>
                     </ListGroup>
                     <div className="card_btns">
                         <Button variant="danger" className="delete_btn" onClick={() => this.props.removeItem(id)}>Удалить</Button>
@@ -59,6 +60,11 @@ class CardWatch extends React.Component {
             </Card>
         )
     }
+}
+
+CardWatch.defaultProps = {
+    defaultCurrency: 'UAH',
+    defaultCountry: 'Ukraine'
 }
 
 export default CardWatch;
