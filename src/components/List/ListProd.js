@@ -1,5 +1,5 @@
 import React       from "react";
-import { data }    from '../../data';
+import { request } from "../../request";
 import ModalWindow from './Modal-window/ModalWindow';
 import CardWatch   from './Card/CardWatch';
 import Filtered    from './Filter/Filtered';
@@ -10,8 +10,6 @@ class ListProd extends React.Component {
         super(props);
 
         this.state = {
-            // filtered: [...data],
-            // database: [...data],
             filtered: [],
             database: [],
             showModal: false,
@@ -21,18 +19,19 @@ class ListProd extends React.Component {
         }
     }
 
+    data = new request();
+
     componentDidMount() {
-        this.getData();
+        this.getRequest()
     }
 
-    getData = async() => {
-        const response = await fetch('https://629fcf1a202ceef70860a4bd.mockapi.io/items');
-        const body = await response.json();
-
-        this.setState({
-            filtered: body,
-            database: body
-        })
+    getRequest = () => {
+        this.data
+            .getData()
+            .then(res => this.setState({
+                filtered: res,
+                database: res
+            }));
     }
 
     showModalWindow = () => {
