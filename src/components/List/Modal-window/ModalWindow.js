@@ -12,8 +12,6 @@ class ModalWindow extends React.Component {
             price: 0,
             description: '',
             url: '',
-            // currency: !('') && 'uah',
-            // country: !('') &&'Ukraine',
             currency: '',
             country: '',
             id: uuidv4(),

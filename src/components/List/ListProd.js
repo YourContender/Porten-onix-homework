@@ -10,13 +10,29 @@ class ListProd extends React.Component {
         super(props);
 
         this.state = {
-            filtered: [...data],
-            database: [...data],
+            // filtered: [...data],
+            // database: [...data],
+            filtered: [],
+            database: [],
             showModal: false,
             currentCard: null,
             newCard: null,
             idActiveCard: null
         }
+    }
+
+    componentDidMount() {
+        this.getData();
+    }
+
+    getData = async() => {
+        const response = await fetch('https://629fcf1a202ceef70860a4bd.mockapi.io/items');
+        const body = await response.json();
+
+        this.setState({
+            filtered: body,
+            database: body
+        })
     }
 
     showModalWindow = () => {
