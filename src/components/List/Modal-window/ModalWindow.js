@@ -2,6 +2,7 @@ import React from "react";
 import { Button, Form, Modal, Row } from "react-bootstrap";
 import './ModalWindow.sass';
 import { v4 as uuidv4 } from 'uuid';
+import { request } from "../../../request";
 
 class ModalWindow extends React.Component {
     constructor(props) {
@@ -20,6 +21,8 @@ class ModalWindow extends React.Component {
         }
     }
 
+    data = new request();
+
     handleInput = (e) => {
         this.setState({
             [e.target.name]: e.target.value
@@ -27,10 +30,14 @@ class ModalWindow extends React.Component {
     }
 
     onSubmit = () => {
-        const { addNewProduct, showModalWindow } = this.props;
         const result = this.state;
+        const { addNewProduct, showModalWindow } = this.props;
+
+        this.data
+            .addNewItem(result)
+            .then(res => addNewProduct(res))
         
-        addNewProduct(result);
+        // addNewProduct(result);
         showModalWindow();
     }
     
