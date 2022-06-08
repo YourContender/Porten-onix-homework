@@ -21,7 +21,7 @@ class CardWatch extends React.Component {
         const { dragStartHandler, dragEndHandler, dragOverHandler, dropHandler } = this.props;
         const item = this.props.item;
         const photoLink = typeof url === 'string' ? url : url.path + '.' + url.extension;
-        const activeClass = active ? '' : "test_active";
+        const activeClass = active ? "test_active" : '';
 
         return (
             <Card 

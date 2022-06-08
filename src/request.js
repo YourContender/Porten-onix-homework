@@ -18,7 +18,7 @@ export class request {
                 country: prod.country,
                 id: prod.id,
                 order: prod.order,
-                active: false
+                active: prod.active
             }),
             headers: {
                 'Accept': 'application/json',
