@@ -1,5 +1,6 @@
-import React from "react";
 import { Card, Button, ListGroupItem, ListGroup } from "react-bootstrap";
+import React     from "react";
+import PropTypes from 'prop-types';
 import './CardWatch.sass';
 
 class CardWatch extends React.Component { 
@@ -64,6 +65,17 @@ class CardWatch extends React.Component {
 CardWatch.defaultProps = {
     defaultCurrency: 'UAH',
     defaultCountry: 'Ukraine'
+}
+
+CardWatch.propTypes = {
+    url: PropTypes.string,
+    title: PropTypes.string,
+    description: PropTypes.string,
+    price: PropTypes.string,
+    currency: PropTypes.string,
+    country: PropTypes.string,
+    id: PropTypes.string,
+    active: PropTypes.bool,
 }
 
 export default CardWatch;

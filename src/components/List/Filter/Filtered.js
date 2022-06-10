@@ -1,5 +1,6 @@
 import { Button, ButtonGroup, Dropdown, DropdownButton } from 'react-bootstrap';
-import React from 'react';
+import React     from 'react';
+import PropTypes from 'prop-types';
 import './Filtered.sass';
 
 class Filtered extends React.Component {
@@ -56,3 +57,8 @@ class Filtered extends React.Component {
 }
 
 export default Filtered;
+
+Filtered.propTypes = {
+    showModalWindow: PropTypes.func,
+    cancelFilterMethod: PropTypes.func
+}

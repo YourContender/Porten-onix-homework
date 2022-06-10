@@ -1,8 +1,8 @@
 import React       from "react";
+import Filtered    from './Filter/Filtered';
+import CardWatch   from './Card/CardWatch';
 import { request } from "../../request";
 import ModalWindow from './Modal-window/ModalWindow';
-import CardWatch   from './Card/CardWatch';
-import Filtered    from './Filter/Filtered';
 import './ListProd.sass';
 
 class ListProd extends React.Component {

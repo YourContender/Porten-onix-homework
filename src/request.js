@@ -6,19 +6,19 @@ export class request {
         return await response.json();
     }
 
-    addNewItem = async(prod) => {
+    addNewItem = async({title, price, description, url, currency, country, id, order, active}) => {
         const response = await fetch(this.api, {
             method: 'POST',
             body: JSON.stringify({
-                title: prod.title,
-                price: prod.price,
-                description: prod.description,
-                url: prod.url,
-                currency: prod.currency,
-                country: prod.country,
-                id: prod.id,
-                order: prod.order,
-                active: prod.active
+                title: title,
+                price: price,
+                description: description,
+                url: url,
+                currency: currency,
+                country: country,
+                id: id,
+                order: order,
+                active: active
             }),
             headers: {
                 'Accept': 'application/json',

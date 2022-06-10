@@ -1,9 +1,9 @@
 import React    from 'react';
-import logoShop from '../../img/logo/logo-porten.png';
 import basket   from '../../img/logo/basket.png';
 import search   from '../../img/logo/search.png';
-import './Nav.sass';
 import { Link } from 'react-router-dom';
+import logoShop from '../../img/logo/logo-porten.png';
+import './Nav.sass';
 
 class Nav extends React.Component {
     constructor(props) {
