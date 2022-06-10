@@ -75,10 +75,12 @@ class ListProd extends React.Component {
     }
 
     removeItem = (id) => {
-        this.setState(({filtered, database}) => ({
-            filtered: filtered.filter(item => item.id !== id),
-            database: database.filter(item => item.id !== id)
-        }))
+        this.data
+            .deleteItem(this.state.filtered, id)
+            .then(res => this.setState({
+                filtered: res,
+                database: res
+            }))
     }
 
     onActiveCard = (id) => {  

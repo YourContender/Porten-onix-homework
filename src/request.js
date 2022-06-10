@@ -27,4 +27,16 @@ export class request {
         });   
         return await response.json();     
     }
+
+    deleteItem = async(array, id) => {
+        let newListItems = array.filter(item => item.id !== id);
+
+        const res = await fetch(this.api + '/' + id, {
+            method: 'DELETE'
+        })
+
+        if (res.status === 200) {
+            return await newListItems;
+        }
+    }
 }
