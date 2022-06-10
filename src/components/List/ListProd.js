@@ -83,7 +83,7 @@ class ListProd extends React.Component {
             }))
     }
 
-    onActiveCard = (id) => {  
+    onActiveCard = (id) => {
         this.setState(({filtered}) => ({
             filtered: [...filtered].map(item => {
                 return {...item, active: item.id === id ? !item.active : item.active}

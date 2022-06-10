@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 import './CardWatch.sass';
 
 function CardWatch({item, dragStartHandler, dragEndHandler, dragOverHandler, dropHandler, removeItem, defaultCountry, defaultCurrency, onActiveCard}) {  
-    const onActiveItem = (id) => {
-        onActiveCard(id)
+    const onActiveItem = (e, id) => {
+        e.target.textContent != 'Удалить' && onActiveCard(id)
     }   
 
     const { url, title, description, price, currency, country, id, active } = item;
@@ -21,7 +21,7 @@ function CardWatch({item, dragStartHandler, dragEndHandler, dragOverHandler, dro
             onDrop={(e) => dropHandler(e, item)}
             draggable={true}
             className="card_container" 
-            onClick={() => onActiveItem(id)}
+            onClick={(e) => onActiveItem(e, id)}
         >
             <div className={activeClass}>
                 <Card.Img className="card_img" variant="top" src={photoLink} />
