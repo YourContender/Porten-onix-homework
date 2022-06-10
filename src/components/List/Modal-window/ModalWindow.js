@@ -22,6 +22,16 @@ class ModalWindow extends React.Component {
         }
     }
 
+    componentDidMount() {
+        document.addEventListener('keydown', this.onClickEscape);
+    }
+
+    onClickEscape = (e) => {
+        if (e.code === 'Escape') {
+            this.props.showModalWindow();
+        }
+    }
+
     data = new request();
 
     handleInput = (e) => {
