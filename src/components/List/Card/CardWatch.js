@@ -3,7 +3,7 @@ import React     from "react";
 import PropTypes from 'prop-types';
 import './CardWatch.sass';
 
-function CardWatch({item, dragStartHandler, dragEndHandler, dragOverHandler, dropHandler, removeItem, defaultCountry, defaultCurrency, onActiveCard}) {  
+function CardWatch({item, dragStartHandler, dragEndHandler, dragOverHandler, dropHandler, removeItem, onActiveCard}) {  
     const onActiveItem = (e, id) => {
         e.target.textContent != 'Удалить' && onActiveCard(id)
     }   
@@ -36,9 +36,9 @@ function CardWatch({item, dragStartHandler, dragEndHandler, dragOverHandler, dro
                     <ListGroupItem className="card_descr">
                         <strong className="card_descr_price">Price: </strong> {price}
                     </ListGroupItem>
-                    <ListGroupItem><strong>Currency: </strong>{currency ? currency :  defaultCurrency}</ListGroupItem> 
+                    <ListGroupItem><strong>Currency: </strong>{currency}</ListGroupItem> 
                     
-                    <ListGroupItem><strong>Country: </strong>{country ? country :  defaultCountry}</ListGroupItem>
+                    <ListGroupItem><strong>Country: </strong>{country}</ListGroupItem>
                 </ListGroup>
                 <div className="card_btns">
                     <Button variant="danger" className="delete_btn" onClick={() => removeItem(id)}>Удалить</Button>
@@ -47,11 +47,6 @@ function CardWatch({item, dragStartHandler, dragEndHandler, dragOverHandler, dro
             </div>
         </Card>
     )
-}
-
-CardWatch.defaultProps = {
-    defaultCurrency: 'UAH',
-    defaultCountry: 'Ukraine'
 }
 
 CardWatch.propTypes = {

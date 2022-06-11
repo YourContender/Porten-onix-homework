@@ -67,6 +67,7 @@ export default function ModalWindowView({ handleInput, showModalWindow, onSubmit
                                     onChange={handleInput} 
                                     defaultValue="Choose currency"
                                 >
+                                    <option>choose currency</option>
                                     <option>UAH</option>
                                     <option>USD</option>
                                     <option>EUR</option>
@@ -81,6 +82,7 @@ export default function ModalWindowView({ handleInput, showModalWindow, onSubmit
                                     onChange={handleInput} 
                                     defaultValue="Choose country"
                                 >
+                                    <option>choose country</option>
                                     <option>Ukraine</option>
                                     <option>Poland</option>
                                     <option>UK</option>
