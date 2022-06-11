@@ -1,9 +1,12 @@
+import Layout   from "../components/Layout/Layout";
 import ListProd from "../components/List/ListProd";
 
 function ListPage() {
     return (
         <>
-            <ListProd/>
+            <Layout>
+                <ListProd/>
+            </Layout>
         </>
     );
 }
