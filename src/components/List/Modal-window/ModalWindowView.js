@@ -62,7 +62,6 @@ export default function ModalWindowView({ handleInput, showModalWindow, onSubmit
                             <Form.Group controlId="form-5">
                                 <Form.Label><p className='modal_form_choose'>Choose currency</p></Form.Label>
                                 <Form.Select 
-                                    style={{width: '80%', margin: '0 auto'}} 
                                     name='currency' 
                                     onChange={handleInput} 
                                     defaultValue="Choose currency"
@@ -77,7 +76,6 @@ export default function ModalWindowView({ handleInput, showModalWindow, onSubmit
                             <Form.Group controlId="form-6">
                                 <Form.Label><p className='modal_form_choose'>Choose country</p></Form.Label>
                                 <Form.Select 
-                                    style={{width: '80%', margin: '0 auto'}} 
                                     name='country' 
                                     onChange={handleInput} 
                                     defaultValue="Choose country"
