@@ -1,64 +1,59 @@
-import { Card, Button, ListGroupItem, ListGroup, Spinner } from "react-bootstrap";
-import React     from "react";
-import PropTypes from 'prop-types';
+import React         from "react";
+import { Card }      from "react-bootstrap";
+import PropTypes     from 'prop-types';
+import CardWatchView from "./CardWatchView";
 import './CardWatch.sass';
-import { useState } from "react";
 
-function CardWatch({item, dragStartHandler, dragEndHandler, dragOverHandler, dropHandler, removeItem, onActiveCard, load}) {  
-    const [test, setTest] = useState(false);
+class CardWatch extends React.Component {
+    constructor(props) {
+        super(props);
 
-    const onActiveItem = (e, id) => {
-        e.target.textContent != 'Удалить' && onActiveCard(id)
-    }   
-
-    const { url, title, description, price, currency, country, id, active } = item;
-    const photoLink = typeof url === 'string' ? url : url.path + '.' + url.extension;
-    const activeClass = active ? "test_active" : '';
-
-    const testFunc = (id) => {
-        removeItem(id);
-        setTest(true);
+        this.state = {
+            spinner: false
+        }
     }
 
-    return (
-        <Card 
-            onDragStart={() => dragStartHandler(item)}
-            onDragLeave={() => dragEndHandler()}
-            onDragEnd={() => dragEndHandler()}
-            onDragOver={(e) => dragOverHandler(e, item)}
-            onDrop={(e) => dropHandler(e, item)}
-            draggable={true}
-            className="card_container" 
-            onClick={(e) => onActiveItem(e, id)}
-        >
-            <div className={activeClass}>
-                <Card.Img className="card_img" variant="top" src={photoLink} />
-                <Card.Body>
-                    <Card.Title>{title}</Card.Title>
-                    <Card.Text>
-                        {description.length > 15 ? description.split(' ').slice(0, 11).join(' ') : null}
-                        {/* <div className='card_test'>{description}</div> */}
-                        {description.length === 0 && 'К этому товару описание не было добавлено. Подробнее о нем вы можете узнать у продавца'}
-                    </Card.Text>
-                </Card.Body>
-                <ListGroup className="list-group-flush">
-                    <ListGroupItem className="card_descr">
-                        <strong className="card_descr_price">Price: </strong> {price}
-                    </ListGroupItem>
-                    <ListGroupItem><strong>Currency: </strong>{currency}</ListGroupItem> 
-                    
-                    <ListGroupItem><strong>Country: </strong>{country}</ListGroupItem>
-                </ListGroup>
-                <div className="card_spinner">
-                    {test && <Spinner animation="border" />}
-                </div>
-                <div className="card_btns">
-                    <Button variant="danger" className="delete_btn" onClick={() => testFunc(id)}>Удалить</Button>
-                    <Button variant="primary">Купить</Button>
-                </div>
-            </div>
-        </Card>
-    )
+    onActiveItem = (e, id) => {
+        e.target.textContent != 'Удалить' && this.props.onActiveCard(id)
+    }
+
+    removeCard = (id) => {
+        this.setState({
+            spinner: true
+        })
+
+        this.props.removeItem(id);
+    }
+    
+    render() {
+        const { url, id, active } = this.props.item;
+        const {item, dragStartHandler, dragEndHandler, dragOverHandler, dropHandler, onActiveCard} = this.props;
+        const photoLink = typeof url === 'string' ? url : url.path + '.' + url.extension;
+        const activeClass = active ? "test_active" : '';
+
+
+        return (
+            <Card 
+                onDragStart={() => dragStartHandler(item)}
+                onDragLeave={() => dragEndHandler()}
+                onDragEnd={() => dragEndHandler()}
+                onDragOver={(e) => dragOverHandler(e, item)}
+                onDrop={(e) => dropHandler(e, item)}
+                draggable={true}
+                className="card_container" 
+                onClick={(e) => this.onActiveItem(e, id)}
+            >
+                <CardWatchView 
+                    photoLink={photoLink}
+                    item={this.props.item}
+                    activeClass={activeClass}
+                    removeCard={this.removeCard}
+                    onActiveCard={onActiveCard}
+                    spinner={this.state.spinner}
+                />
+            </Card>
+        )
+    }
 }
 
 CardWatch.propTypes = {

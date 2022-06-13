@@ -3,7 +3,6 @@ import PropTypes        from 'prop-types';
 import { request }      from "../../../request";
 import ModalWindowView  from "./ModalWindowView";
 
-
 class ModalWindow extends React.Component {
     constructor(props) {
         super(props);
