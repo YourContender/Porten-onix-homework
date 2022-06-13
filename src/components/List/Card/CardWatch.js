@@ -1,9 +1,12 @@
-import { Card, Button, ListGroupItem, ListGroup } from "react-bootstrap";
+import { Card, Button, ListGroupItem, ListGroup, Spinner } from "react-bootstrap";
 import React     from "react";
 import PropTypes from 'prop-types';
 import './CardWatch.sass';
+import { useState } from "react";
 
-function CardWatch({item, dragStartHandler, dragEndHandler, dragOverHandler, dropHandler, removeItem, onActiveCard}) {  
+function CardWatch({item, dragStartHandler, dragEndHandler, dragOverHandler, dropHandler, removeItem, onActiveCard, load}) {  
+    const [test, setTest] = useState(false);
+
     const onActiveItem = (e, id) => {
         e.target.textContent != 'Удалить' && onActiveCard(id)
     }   
@@ -11,6 +14,11 @@ function CardWatch({item, dragStartHandler, dragEndHandler, dragOverHandler, dro
     const { url, title, description, price, currency, country, id, active } = item;
     const photoLink = typeof url === 'string' ? url : url.path + '.' + url.extension;
     const activeClass = active ? "test_active" : '';
+
+    const testFunc = (id) => {
+        removeItem(id);
+        setTest(true);
+    }
 
     return (
         <Card 
@@ -29,6 +37,7 @@ function CardWatch({item, dragStartHandler, dragEndHandler, dragOverHandler, dro
                     <Card.Title>{title}</Card.Title>
                     <Card.Text>
                         {description.length > 15 ? description.split(' ').slice(0, 11).join(' ') : null}
+                        {/* <div className='card_test'>{description}</div> */}
                         {description.length === 0 && 'К этому товару описание не было добавлено. Подробнее о нем вы можете узнать у продавца'}
                     </Card.Text>
                 </Card.Body>
@@ -40,8 +49,11 @@ function CardWatch({item, dragStartHandler, dragEndHandler, dragOverHandler, dro
                     
                     <ListGroupItem><strong>Country: </strong>{country}</ListGroupItem>
                 </ListGroup>
+                <div className="card_spinner">
+                    {test && <Spinner animation="border" />}
+                </div>
                 <div className="card_btns">
-                    <Button variant="danger" className="delete_btn" onClick={() => removeItem(id)}>Удалить</Button>
+                    <Button variant="danger" className="delete_btn" onClick={() => testFunc(id)}>Удалить</Button>
                     <Button variant="primary">Купить</Button>
                 </div>
             </div>

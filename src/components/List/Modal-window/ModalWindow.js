@@ -1,13 +1,13 @@
 import React            from "react";
 import PropTypes        from 'prop-types';
 import { request }      from "../../../request";
-import { v4 as uuidv4 } from 'uuid';
 import ModalWindowView  from "./ModalWindowView";
 
 
 class ModalWindow extends React.Component {
     constructor(props) {
         super(props);
+        console.log(this.props.id);
 
         this.state = {
             title: '',
@@ -16,7 +16,7 @@ class ModalWindow extends React.Component {
             url: '',
             currency: '',
             country: '',
-            id: uuidv4(),
+            id: +this.props.id + 1,
             order: +this.props.order + 1,
             active: false
         }

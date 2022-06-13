@@ -15,7 +15,8 @@ class ListProd extends React.Component {
             showModal: false,
             currentCard: null,
             newCard: null,
-            idActiveCard: null
+            idActiveCard: null,
+            load: false
         }
     }
 
@@ -75,8 +76,9 @@ class ListProd extends React.Component {
     }
 
     removeItem = (id) => {
+        
         this.data
-            .deleteItem(this.state.filtered, id)
+            .deleteItem(this.state.filtered, id)    
             .then(res => this.setState({
                 filtered: res,
                 database: res
@@ -142,6 +144,7 @@ class ListProd extends React.Component {
                             showModalWindow={() => this.showModalWindow()}
                             addNewProduct={this.addNewProduct}
                             order={filtered.length}
+                            id={filtered[filtered.length - 1].id}
                         />
                 }
                 <div className='filter'>
@@ -166,6 +169,7 @@ class ListProd extends React.Component {
                                     key={item.id} 
                                     removeItem={this.removeItem}
                                     onActiveCard={this.onActiveCard}
+                                    load={this.state.load}
                                 />
                             )
                         })
