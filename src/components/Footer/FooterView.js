@@ -48,8 +48,8 @@ export default function FooterView({category}) {
             <div className="subfooter">
                 <div className="info">
                     <span>Сделал: Саенко Сергей</span>
-                    <a target="_blank" href="https://github.com/YourContender">Мой GitHub</a>
-                    <a target="_blank" href="https://www.figma.com/file/0a01UVA3pCxrJTXErEGLho/PORTEN?node-id=0%3A1">Оригинал дизайна</a>
+                    <a target="_blank" rel="noreferrer" href="https://github.com/YourContender">Мой GitHub</a>
+                    <a target="_blank" rel="noreferrer" href="https://www.figma.com/file/0a01UVA3pCxrJTXErEGLho/PORTEN?node-id=0%3A1">Оригинал дизайна</a>
                 </div>
                 <div>
                     <span>© 2022</span>

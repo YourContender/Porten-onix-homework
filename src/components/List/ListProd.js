@@ -76,7 +76,7 @@ class ListProd extends React.Component {
     }
 
     removeItem = (id) => {
-        
+
         this.data
             .deleteItem(this.state.filtered, id)    
             .then(res => this.setState({
