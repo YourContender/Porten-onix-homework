@@ -1,20 +1,30 @@
-import Footer from "../Footer/Footer"
-import Header from "../Header/Header"
-import Nav from "../Nav/Nav";
+import PropTypes from 'prop-types';
+import Footer from '../Footer/Footer';
+import Header from '../Header/Header';
+import Nav from '../Nav/Nav';
 
-const Layout = ({children}) => {
-    return(
-        <>
-            <Header/>
-            <Nav/>
+function Layout({ children }) {
+  const child = children;
+  return (
+    <>
+      <Header />
+      <Nav />
             
-            <main>
-                {children}
-            </main>
+      <main>
+        {child}
+      </main>
 
-            <Footer/>
-        </>
-    )
+      <Footer />
+    </>
+  );
 }
 
 export default Layout;
+
+Layout.propTypes = {
+  children: PropTypes.element
+};
+
+Layout.defaultProps = { 
+  children: <Header />, 
+};
