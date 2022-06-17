@@ -13,21 +13,25 @@ class Filtered extends React.Component {
   }
 
   filterMethod = (id) => {
-    return this.props.filteredPriceMethod(id);
+    const { filteredPriceMethod } = this.props;
+    return filteredPriceMethod(id);
   };
 
   filterCountryMethod = (country) => {
-    return this.props.filteredCountryMethod(country);
+    const { filteredCountryMethod } = this.props;
+    return filteredCountryMethod(country);
   };
 
   render() {
+    const { country } = this.state;
+    const { showModalWindow, cancelFilterMethod } = this.props;
     return (
       <FilterView 
-        showModalWindow={this.props.showModalWindow}
-        cancelFilterMethod={this.props.cancelFilterMethod}
+        showModalWindow={showModalWindow}
+        cancelFilterMethod={cancelFilterMethod}
         filterCountryMethod={this.filterCountryMethod}
         filterMethod={this.filterMethod}
-        country={this.state.country}
+        country={country}
       />
     );
   }
@@ -37,6 +41,14 @@ export default Filtered;
 
 Filtered.propTypes = {
   showModalWindow: PropTypes.func,
+  filteredPriceMethod: PropTypes.func,
   filteredCountryMethod: PropTypes.func,
   cancelFilterMethod: PropTypes.func
+};
+
+Filtered.defaultProps = { 
+  showModalWindow: () => null,
+  filteredCountryMethod: () => null,
+  filteredPriceMethod: () => null,
+  cancelFilterMethod: () => null
 };

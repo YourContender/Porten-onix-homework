@@ -1,7 +1,7 @@
 import React from 'react';
 import Filtered from './Filter/Filtered';
 import CardWatch from './Card/CardWatch';
-import { request } from '../../request';
+import { Request } from '../../request';
 import ModalWindow from './Modal-window/ModalWindow';
 import './ListProd.sass';
 
@@ -15,16 +15,11 @@ class ListProd extends React.Component {
       showModal: false,
       currentCard: null,
       newCard: null,
-      idActiveCard: null,
       load: false
     };
   }
 
-  hello = () => {
-    return 'hello world';
-  };
-
-  data = new request();
+  data = new Request();
 
   componentDidMount() {
     this.getRequest();
@@ -46,21 +41,23 @@ class ListProd extends React.Component {
   };
 
   cancelFilterMethod = () => {
+    const { database } = this.state;
     this.setState({
-      filtered: [...this.state.database],
+      filtered: [...database],
       showModal: false
     });
   };
 
   filteredPriceMethod = (id) => {
     this.setState(({ filtered }) => ({
-      filtered: [...filtered].sort((a, b) => (a.price - b.price) * (id == 1 ? 1 : -1))
+      filtered: [...filtered].sort((a, b) => (a.price - b.price) * (id === '1' ? 1 : -1))
     }));
   };
 
   filteredCountryMethod = (country) => {
+    const { database } = this.state;
     this.setState({
-      filtered: [...this.state.database],
+      filtered: [...database],
       showModal: false
     });
 
@@ -80,8 +77,10 @@ class ListProd extends React.Component {
   };
 
   removeItem = (id) => {
+    const { filtered } = this.state;
+
     this.data
-      .deleteItem(this.state.filtered, id)    
+      .deleteItem(filtered, id)    
       .then((res) => this.setState({
         filtered: res,
         database: res
@@ -109,20 +108,24 @@ class ListProd extends React.Component {
   dragOverHandler = (e, card) => {
     e.preventDefault(); 
 
-    if (JSON.stringify(this.state.newCard) !== JSON.stringify(card)) {
+    const { newCard } = this.state;
+
+    if (JSON.stringify(newCard) !== JSON.stringify(card)) {
       this.setState({ newCard: card });
     }
   };
 
   dropHandler = (e, card) => {
     e.preventDefault(); 
+
+    const { filtered, currentCard } = this.state;
         
-    const res = this.state.filtered.map((item) => {
+    const res = filtered.map((item) => {
       if (item.id === card.id) {
-        return { ...item, order: this.state.currentCard.order };
+        return { ...item, order: currentCard.order };
       }
 
-      if (item.id === this.state.currentCard.id) {
+      if (item.id === currentCard.id) {
         return { ...item, order: card.order };
       }
 
@@ -137,7 +140,7 @@ class ListProd extends React.Component {
   };
 
   render() {
-    const { showModal, filtered } = this.state;
+    const { showModal, filtered, load } = this.state;
 
     return (
       <div className="list_container">
@@ -174,7 +177,7 @@ class ListProd extends React.Component {
                       key={item.id} 
                       removeItem={this.removeItem}
                       onActiveCard={this.onActiveCard}
-                      load={this.state.load}
+                      load={load}
                     />
                   );
                 })

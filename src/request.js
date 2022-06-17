@@ -1,4 +1,4 @@
-export class request {
+export class Request {
   api = 'https://629fcf1a202ceef70860a4bd.mockapi.io/items';
 
   getData = async () => {

@@ -1,23 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { request } from '../../../request';
+import { Request } from '../../../request';
 import ModalWindowView from './ModalWindowView';
 
 class ModalWindow extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      title: '',
-      price: 0,
-      description: '',
-      url: '',
-      currency: '',
-      country: '',
-      id: +this.props.id + 1,
-      order: +this.props.order + 1,
-      active: false
-    };
+    this.state = {};
   }
 
   componentDidMount() {
@@ -25,12 +15,14 @@ class ModalWindow extends React.Component {
   }
 
   onClickEscape = (e) => {
+    const { showModalWindow } = this.props;
+
     if (e.code === 'Escape') {
-      this.props.showModalWindow();
+      showModalWindow();
     }
   };
 
-  data = new request();
+  data = new Request();
 
   handleInput = (e) => {
     this.setState({
@@ -39,22 +31,39 @@ class ModalWindow extends React.Component {
   };
 
   onSubmit = () => {
+    const {
+      addNewProduct, showModalWindow, id, order 
+    } = this.props;
+
     const result = this.state;
-    const { addNewProduct, showModalWindow } = this.props;
+
+    const defaultValue = {
+      url: result.url === undefined ? '' : result.url,
+      price: result.price === undefined ? '' : result.price,  
+      title: result.title === undefined ? '' : result.title,
+      description: result.description === undefined ? '' : result.description,
+      currency: result.currency === undefined ? '' : result.currency,
+      country: result.country === undefined ? '' : result.country,
+      id: +id + 1,
+      order: +order + 1,
+      active: false,
+    };
 
     this.data
-      .addNewItem(result)
+      .addNewItem({ ...result, ...defaultValue })
       .then((res) => addNewProduct(res));
         
     showModalWindow();
   };
     
   render() {
+    const { showModalWindow } = this.props;
+
     return (
       <ModalWindowView 
         handleInput={this.handleInput}
         onSubmit={this.onSubmit}
-        showModalWindow={this.props.showModalWindow}
+        showModalWindow={showModalWindow}
       />
     );
   }
@@ -64,5 +73,14 @@ export default ModalWindow;
 
 ModalWindow.propTypes = {
   addNewProduct: PropTypes.func,
-  showModalWindow: PropTypes.func
+  showModalWindow: PropTypes.func,
+  id: PropTypes.number,
+  order: PropTypes.number
+};
+
+ModalWindow.defaultProps = { 
+  addNewProduct: () => null,
+  showModalWindow: () => null,
+  id: 'default id',
+  order: 'default order'
 };

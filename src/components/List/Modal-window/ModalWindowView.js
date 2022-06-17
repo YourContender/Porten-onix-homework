@@ -120,3 +120,9 @@ ModalWindowView.propTypes = {
   showModalWindow: PropTypes.func,  
   onSubmit: PropTypes.func
 };
+
+ModalWindowView.defaultProps = { 
+  handleInput: () => null,
+  showModalWindow: () => null,  
+  onSubmit: () => null
+};

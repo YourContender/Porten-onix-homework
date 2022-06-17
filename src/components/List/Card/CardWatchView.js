@@ -1,6 +1,7 @@
 import {
   Button, ListGroupItem, ListGroup, Spinner, Card 
 } from 'react-bootstrap';
+import PropTypes from 'prop-types';
 
 function CardWatchView({
   activeClass, item, photoLink, spinner, removeCard 
@@ -12,7 +13,7 @@ function CardWatchView({
         <Card.Title>{item.title}</Card.Title>
         <Card.Text>
           {item.description.length > 15 ? item.description.split(' ').slice(0, 11).join(' ') : null}
-          {item.description.length === 0 && 'К этому товару описание не было добавлено. Подробнее о нем вы можете узнать у продавца'}
+          {item.description.length === 0 && 'К этому товару описание не было добавлено.'}
         </Card.Text>
       </Card.Body>
       <ListGroup className="list-group-flush">
@@ -41,5 +42,21 @@ function CardWatchView({
     </div>
   );
 }
+
+CardWatchView.propTypes = { 
+  activeClass: PropTypes.bool,
+  item: PropTypes.arrayOf(PropTypes.string), 
+  photoLink: PropTypes.string, 
+  spinner: PropTypes.bool, 
+  removeCard: PropTypes.func
+};
+  
+CardWatchView.defaultProps = { 
+  activeClass: null,
+  item: [], 
+  photoLink: '', 
+  spinner: false, 
+  removeCard: () => null
+};
 
 export default CardWatchView;

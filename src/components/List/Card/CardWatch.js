@@ -15,7 +15,7 @@ class CardWatch extends React.Component {
 
   onActiveItem = (e, id) => {
     const { onActiveCard } = this.props;
-    e.target.textContent !== 'Удалить' && onActiveCard(id);
+    return e.target.textContent !== 'Удалить' && onActiveCard(id);
   };
 
   removeCard = (id) => {

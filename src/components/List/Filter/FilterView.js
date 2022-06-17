@@ -1,6 +1,7 @@
 import {
   Button, ButtonGroup, Dropdown, DropdownButton 
 } from 'react-bootstrap';
+import PropTypes from 'prop-types';
 
 export default function FilterView({
   showModalWindow, filterMethod, cancelFilterMethod, country, filterCountryMethod 
@@ -28,7 +29,13 @@ export default function FilterView({
           {
                 country.map((item, i) => {
                   return (
-                    <Dropdown.Item eventKey={i} key={i} onClick={() => filterCountryMethod(item)}>{item}</Dropdown.Item>
+                    <Dropdown.Item 
+                      eventKey={i} 
+                      key={item} 
+                      onClick={() => filterCountryMethod(item)}
+                    >
+                      {item}
+                    </Dropdown.Item>
                   );
                 })
             }
@@ -38,3 +45,19 @@ export default function FilterView({
     </ButtonGroup>
   );
 }
+
+FilterView.propTypes = { 
+  showModalWindow: PropTypes.func, 
+  filterMethod: PropTypes.func, 
+  cancelFilterMethod: PropTypes.func, 
+  country: PropTypes.arrayOf(PropTypes.string), 
+  filterCountryMethod: PropTypes.func 
+};
+
+FilterView.defaultProps = { 
+  country: [], 
+  showModalWindow: () => null, 
+  filterMethod: () => null, 
+  cancelFilterMethod: () => null, 
+  filterCountryMethod: () => null 
+};
