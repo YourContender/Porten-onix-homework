@@ -1,12 +1,12 @@
 import React from 'react';
 import Filtered from './Filter/Filtered';
 import CardWatch from './Card/CardWatch';
-import { Request } from '../../request';
+import Request from '../../request';
 import ModalWindow from './Modal-window/ModalWindow';
 import './ListProd.sass';
 
 class ListProd extends React.Component {
-  constructor(props) {
+  constructor(props) { // eslint-disable-line
     super(props);
 
     this.state = {

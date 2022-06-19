@@ -1,14 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Request } from '../../../request';
+import Request from '../../../request';
 import ModalWindowView from './ModalWindowView';
 
 class ModalWindow extends React.Component {
-  constructor(props) {
+  constructor(props) { // eslint-disable-line
     super(props);
 
     this.state = {};
   }
+  
+  data = new Request();
 
   componentDidMount() {
     document.addEventListener('keydown', this.onClickEscape);
@@ -21,8 +23,6 @@ class ModalWindow extends React.Component {
       showModalWindow();
     }
   };
-
-  data = new Request();
 
   handleInput = (e) => {
     this.setState({

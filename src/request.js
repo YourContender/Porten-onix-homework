@@ -1,9 +1,10 @@
-export class Request {
+export default class Request {
   api = 'https://629fcf1a202ceef70860a4bd.mockapi.io/items';
 
   getData = async () => {
     const response = await fetch(this.api);
-    return await response.json();
+    const body = await response.json();
+    return body;
   };
 
   addNewItem = async ({
@@ -27,7 +28,9 @@ export class Request {
         'Content-Type': 'application/json'
       }
     });   
-    return await response.json();     
+    const body = await response.json();  
+    
+    return body;
   };
 
   deleteItem = async (array, id) => {
@@ -38,7 +41,9 @@ export class Request {
     });
 
     if (res.status === 200) {
-      return await newListItems;
-    }
+      const result = await newListItems;
+      return result;
+    } 
+    return array;
   };
 }

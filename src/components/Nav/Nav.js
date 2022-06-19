@@ -54,9 +54,9 @@ class Nav extends React.Component {
                 }
 
                 {
-                    blockImg.map((item, i) => {
+                    blockImg.map((item) => {
                       return (
-                        <div className="block_item_link" key={i}>
+                        <div className="block_item_link" key={item}>
                           <img src={item} alt="basket" />
                         </div>
                       );
@@ -64,8 +64,9 @@ class Nav extends React.Component {
                 }
               </div>
             </div>
-            <div 
+            <div // eslint-disable-line
               className={active ? 'hamburger_active' : 'hamburger'} 
+              role="button"
               onClick={() => this.onActiveClass(true)}
             >
               <div />
