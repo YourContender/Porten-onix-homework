@@ -22,7 +22,7 @@ function Layout({ children }) {
 export default Layout;
 
 Layout.propTypes = {
-  children: PropTypes.element
+  children: PropTypes.array // eslint-disable-line
 };
 
 Layout.defaultProps = { 

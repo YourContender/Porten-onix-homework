@@ -145,15 +145,15 @@ class ListProd extends React.Component {
     return (
       <div className="list_container">
         {
-            showModal 
-                && (
+          showModal 
+              && (
                 <ModalWindow 
                   showModalWindow={() => this.showModalWindow()}
                   addNewProduct={this.addNewProduct}
                   order={filtered.length}
                   id={filtered[filtered.length - 1].id}
                 />
-                )
+              )
         }
         <div className="filter">
           <Filtered 
@@ -166,22 +166,22 @@ class ListProd extends React.Component {
 
         <div className="list_items">
           {
-                filtered.map((item) => {
-                  return (
-                    <CardWatch 
-                      dragStartHandler={this.dragStartHandler}
-                      dragEndHandler={this.dragEndHandler}
-                      dragOverHandler={this.dragOverHandler}
-                      dropHandler={this.dropHandler}
-                      item={item} 
-                      key={item.id} 
-                      removeItem={this.removeItem}
-                      onActiveCard={this.onActiveCard}
-                      load={load}
-                    />
-                  );
-                })
-            }
+            filtered.map((item) => {
+              return (
+                <CardWatch 
+                  dragStartHandler={this.dragStartHandler}
+                  dragEndHandler={this.dragEndHandler}
+                  dragOverHandler={this.dragOverHandler}
+                  dropHandler={this.dropHandler}
+                  item={item} 
+                  key={item.id} 
+                  removeItem={this.removeItem}
+                  onActiveCard={this.onActiveCard}
+                  load={load}
+                />
+              );
+            })
+          }
         </div>
       </div>
     );

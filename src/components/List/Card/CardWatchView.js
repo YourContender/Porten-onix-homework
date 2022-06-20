@@ -44,8 +44,8 @@ function CardWatchView({
 }
 
 CardWatchView.propTypes = { 
-  activeClass: PropTypes.bool,
-  item: PropTypes.arrayOf(PropTypes.string), 
+  activeClass: PropTypes.string,
+  item: PropTypes.object,  // eslint-disable-line
   photoLink: PropTypes.string, 
   spinner: PropTypes.bool, 
   removeCard: PropTypes.func

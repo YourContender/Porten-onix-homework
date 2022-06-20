@@ -61,7 +61,7 @@ class CardWatch extends React.Component {
 }
 
 CardWatch.propTypes = {
-  item: PropTypes.arrayOf(PropTypes.string),
+  item: PropTypes.object,  // eslint-disable-line
   url: PropTypes.string,
   id: PropTypes.string,
   active: PropTypes.bool,
