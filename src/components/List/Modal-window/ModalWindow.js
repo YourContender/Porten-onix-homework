@@ -32,7 +32,7 @@ class ModalWindow extends React.Component {
 
   onSubmit = () => {
     const {
-      addNewProduct, showModalWindow, id, order 
+      addNewProduct, showModalWindow, id, order
     } = this.props;
 
     const result = this.state;
@@ -52,7 +52,7 @@ class ModalWindow extends React.Component {
     this.data
       .addNewItem({ ...result, ...defaultValue })
       .then((res) => addNewProduct(res));
-        
+
     showModalWindow();
   };
     

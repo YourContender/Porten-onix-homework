@@ -7,10 +7,10 @@ import TestContect from './context';
 
 function App() {
   const [bg, setBg] = useState(false);
-  const { colorLight, colorDark } = useContext(TestContect);
+  const theme = bg ? 'light' : 'dark';
 
   return (
-    <TestContect.Provider value={bg ? colorLight : colorDark}>
+    <TestContect.Provider value={theme}>
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="list" element={<ListPage bg={bg} setBg={setBg} />} />

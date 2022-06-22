@@ -12,14 +12,14 @@ function ListProd() {
   const [showModal, setShowModal] = useState(false);
   const [currentCard, setCurrentCard] = useState(null);
   const [newCard, setNewCard] = useState(null);
-  const [load, setLoad] = useState(false);
+  const [load, setLoad] = useState(false); // eslint-disable-line
   
   const value = useContext(TestContect);
 
   const data = new Request();
 
   useEffect(() => {
-    getRequest();
+    getRequest(); // eslint-disable-line
   }, []);
 
   const getRequest = () => {
@@ -45,11 +45,11 @@ function ListProd() {
   };
 
   const filteredCountryMethod = (country) => {
-    setFiltered([...database]);
-    setShowModal(false);
-    const resFilter = filtered.filter((item) => item.country === country).sort((a, b) => a.order - b.order);
-
-    setFiltered(resFilter);
+    if (filtered.length !== database.length) {
+      setFiltered(database);
+    }
+    setShowModal(false);  
+    setFiltered(filtered.filter((item) => item.country === country).sort((a, b) => a.order - b.order));
   };
 
   const addNewProduct = (prod) => {
@@ -67,11 +67,9 @@ function ListProd() {
   };
 
   const onActiveCard = (id) => {
-    const filtered = [...filtered].map((item) => {
+    setFiltered([...filtered].map((item) => {
       return { ...item, active: item.id === id ? !item.active : item.active };
-    });
-
-    setFiltered(filtered);
+    }));
   };
 
   const dragStartHandler = (item) => {
@@ -110,44 +108,46 @@ function ListProd() {
 
   return (
     <div className={value !== 'light' ? 'list_container_dark' : 'list_container_light'}>
-      {
-        showModal 
-            && (
-              <ModalWindow 
-                showModalWindow={() => showModalWindow()}
-                addNewProduct={addNewProduct}
-                order={filtered.length}
-                id={filtered[filtered.length - 1].id}
-              />
-            )
-      }
-      <div className="filter">
-        <Filtered 
-          showModalWindow={showModalWindow} 
-          filteredPriceMethod={filteredPriceMethod}
-          filteredCountryMethod={filteredCountryMethod} 
-          cancelFilterMethod={cancelFilterMethod}
-        />
-      </div>
-
-      <div className="list_items">
+      <div className="list_container_items">
         {
-          filtered.map((item) => {
-            return (
-              <CardWatch 
-                dragStartHandler={dragStartHandler}
-                dragEndHandler={dragEndHandler}
-                dragOverHandler={dragOverHandler}
-                dropHandler={dropHandler}
-                item={item} 
-                key={item.id} 
-                removeItem={removeItem}
-                onActiveCard={onActiveCard}
-                load={load}
-              />
-            );
-          })
+          showModal 
+              && (
+                <ModalWindow 
+                  showModalWindow={() => showModalWindow()}
+                  addNewProduct={addNewProduct}
+                  order={filtered.length}
+                  id={filtered[filtered.length - 1].id}
+                />
+              )
         }
+        <div className="filter">
+          <Filtered 
+            showModalWindow={showModalWindow} 
+            filteredPriceMethod={filteredPriceMethod}
+            filteredCountryMethod={filteredCountryMethod} 
+            cancelFilterMethod={cancelFilterMethod}
+          />
+        </div>
+
+        <div className="list_items">
+          {
+            filtered.map((item) => {
+              return (
+                <CardWatch 
+                  dragStartHandler={dragStartHandler}
+                  dragEndHandler={dragEndHandler}
+                  dragOverHandler={dragOverHandler}
+                  dropHandler={dropHandler}
+                  item={item} 
+                  key={item.id} 
+                  removeItem={removeItem}
+                  onActiveCard={onActiveCard}
+                  load={load}
+                />
+              );
+            })
+          }
+        </div>
       </div>
     </div>
   );
