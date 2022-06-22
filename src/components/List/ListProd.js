@@ -1,125 +1,98 @@
-import React from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import Filtered from './Filter/Filtered';
 import CardWatch from './Card/CardWatch';
 import Request from '../../request';
 import ModalWindow from './Modal-window/ModalWindow';
 import './ListProd.sass';
+import TestContect from '../../context';
 
-class ListProd extends React.Component {
-  constructor(props) { // eslint-disable-line
-    super(props);
+function ListProd() {
+  const [filtered, setFiltered] = useState([]);
+  const [database, setDatabase] = useState([]);
+  const [showModal, setShowModal] = useState(false);
+  const [currentCard, setCurrentCard] = useState(null);
+  const [newCard, setNewCard] = useState(null);
+  const [load, setLoad] = useState(false);
+  
+  const value = useContext(TestContect);
 
-    this.state = {
-      filtered: [],
-      database: [],
-      showModal: false,
-      currentCard: null,
-      newCard: null,
-      load: false
-    };
-  }
+  const data = new Request();
 
-  data = new Request();
+  useEffect(() => {
+    getRequest();
+  }, []);
 
-  componentDidMount() {
-    this.getRequest();
-  }
-
-  getRequest = () => {
-    this.data
+  const getRequest = () => {
+    data
       .getData()
-      .then((res) => this.setState({
-        filtered: res,
-        database: res
-      }));
+      .then((res) => {
+        setFiltered(res);
+        setDatabase(res);
+      });
   };
 
-  showModalWindow = () => {
-    this.setState(({ showModal }) => ({
-      showModal: !showModal
-    }));
+  const showModalWindow = () => {
+    setShowModal(!showModal);
   };
 
-  cancelFilterMethod = () => {
-    const { database } = this.state;
-    this.setState({
-      filtered: [...database],
-      showModal: false
-    });
+  const cancelFilterMethod = () => {
+    setFiltered([...database]);
+    setShowModal(false);
   };
 
-  filteredPriceMethod = (id) => {
-    this.setState(({ filtered }) => ({
-      filtered: [...filtered].sort((a, b) => (a.price - b.price) * (id === '1' ? 1 : -1))
-    }));
+  const filteredPriceMethod = (id) => {
+    setFiltered([...filtered].sort((a, b) => (a.price - b.price) * (id === '1' ? 1 : -1)));
   };
 
-  filteredCountryMethod = (country) => {
-    const { database } = this.state;
-    this.setState({
-      filtered: [...database],
-      showModal: false
-    });
+  const filteredCountryMethod = (country) => {
+    setFiltered([...database]);
+    setShowModal(false);
+    const resFilter = filtered.filter((item) => item.country === country).sort((a, b) => a.order - b.order);
 
-    this.setState(({ filtered }) => ({
-      filtered: filtered.filter((item) => item.country === country).sort((a, b) => a.order - b.order)
-    }));
+    setFiltered(resFilter);
   };
 
-  addNewProduct = (prod) => {
-    this.setState(({ database }) => ({
-      database: [prod, ...database]
-    }));
-
-    this.setState(({ filtered }) => ({
-      filtered: [prod, ...filtered]
-    }));
+  const addNewProduct = (prod) => {
+    setDatabase([prod, ...database]);
+    setFiltered([prod, ...filtered]);
   };
 
-  removeItem = (id) => {
-    const { filtered } = this.state;
-
-    this.data
+  const removeItem = (id) => {
+    data
       .deleteItem(filtered, id)    
-      .then((res) => this.setState({
-        filtered: res,
-        database: res
-      }));
+      .then((res) => {
+        setFiltered(res);
+        setDatabase(res);
+      });
   };
 
-  onActiveCard = (id) => {
-    this.setState(({ filtered }) => ({
-      filtered: [...filtered].map((item) => {
-        return { ...item, active: item.id === id ? !item.active : item.active };
-      })
-    }));
-  };
-
-  dragStartHandler = (item) => {
-    this.setState({
-      currentCard: { ...item }
+  const onActiveCard = (id) => {
+    const filtered = [...filtered].map((item) => {
+      return { ...item, active: item.id === id ? !item.active : item.active };
     });
+
+    setFiltered(filtered);
   };
 
-  dragEndHandler = () => {
-    this.setState({ newCard: null });
+  const dragStartHandler = (item) => {
+    setCurrentCard({ ...item });
   };
 
-  dragOverHandler = (e, card) => {
+  const dragEndHandler = () => {
+    setNewCard({ newCard: null });
+  };
+
+  const dragOverHandler = (e, card) => {
     e.preventDefault(); 
 
-    const { newCard } = this.state;
-
     if (JSON.stringify(newCard) !== JSON.stringify(card)) {
-      this.setState({ newCard: card });
+      setNewCard({ newCard: card });
     }
   };
 
-  dropHandler = (e, card) => {
+  const dropHandler = (e, card) => {
     e.preventDefault(); 
 
-    const { filtered, currentCard } = this.state;
-        
     const res = filtered.map((item) => {
       if (item.id === card.id) {
         return { ...item, order: currentCard.order };
@@ -132,60 +105,52 @@ class ListProd extends React.Component {
       return item;
     });
 
-    return (
-      this.setState({
-        filtered: [...res.sort((a, b) => a.order - b.order)]
-      })
-    );
+    return setFiltered([...res.sort((a, b) => a.order - b.order)]);
   };
 
-  render() {
-    const { showModal, filtered, load } = this.state;
-
-    return (
-      <div className="list_container">
-        {
-          showModal 
-              && (
-                <ModalWindow 
-                  showModalWindow={() => this.showModalWindow()}
-                  addNewProduct={this.addNewProduct}
-                  order={filtered.length}
-                  id={filtered[filtered.length - 1].id}
-                />
-              )
-        }
-        <div className="filter">
-          <Filtered 
-            showModalWindow={this.showModalWindow} 
-            filteredPriceMethod={this.filteredPriceMethod}
-            filteredCountryMethod={this.filteredCountryMethod} 
-            cancelFilterMethod={this.cancelFilterMethod}
-          />
-        </div>
-
-        <div className="list_items">
-          {
-            filtered.map((item) => {
-              return (
-                <CardWatch 
-                  dragStartHandler={this.dragStartHandler}
-                  dragEndHandler={this.dragEndHandler}
-                  dragOverHandler={this.dragOverHandler}
-                  dropHandler={this.dropHandler}
-                  item={item} 
-                  key={item.id} 
-                  removeItem={this.removeItem}
-                  onActiveCard={this.onActiveCard}
-                  load={load}
-                />
-              );
-            })
-          }
-        </div>
+  return (
+    <div className={value !== 'light' ? 'list_container_dark' : 'list_container_light'}>
+      {
+        showModal 
+            && (
+              <ModalWindow 
+                showModalWindow={() => showModalWindow()}
+                addNewProduct={addNewProduct}
+                order={filtered.length}
+                id={filtered[filtered.length - 1].id}
+              />
+            )
+      }
+      <div className="filter">
+        <Filtered 
+          showModalWindow={showModalWindow} 
+          filteredPriceMethod={filteredPriceMethod}
+          filteredCountryMethod={filteredCountryMethod} 
+          cancelFilterMethod={cancelFilterMethod}
+        />
       </div>
-    );
-  }
+
+      <div className="list_items">
+        {
+          filtered.map((item) => {
+            return (
+              <CardWatch 
+                dragStartHandler={dragStartHandler}
+                dragEndHandler={dragEndHandler}
+                dragOverHandler={dragOverHandler}
+                dropHandler={dropHandler}
+                item={item} 
+                key={item.id} 
+                removeItem={removeItem}
+                onActiveCard={onActiveCard}
+                load={load}
+              />
+            );
+          })
+        }
+      </div>
+    </div>
+  );
 }
 
 export default ListProd;
