@@ -1,7 +1,7 @@
-import './Button.sass';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSun, faMoon } from '@fortawesome/free-solid-svg-icons';
+import './Button.sass';
 
 function Button({ bg, setBg }) {
   return (

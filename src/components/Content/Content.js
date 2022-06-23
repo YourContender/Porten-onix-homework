@@ -42,9 +42,7 @@ class Content extends React.Component {
                         
             <div className="content_season_list">
               {
-                data.map((item) => {
-                  const { title, price, id } = item;
-
+                data.map(({ title, price, id }) => {
                   return (
                     <div className="item" key={id}>
                       <div className="block">

@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import Filtered from './Filter/Filtered';
 import CardWatch from './Card/CardWatch';
 import Request from '../../request';
-import ModalWindow from './Modal-window/ModalWindow';
+import ModalWindow from './ModalWindow/ModalWindow';
 import './ListProd.sass';
 import TestContect from '../../context';
 
@@ -12,15 +12,10 @@ function ListProd() {
   const [showModal, setShowModal] = useState(false);
   const [currentCard, setCurrentCard] = useState(null);
   const [newCard, setNewCard] = useState(null);
-  const [load, setLoad] = useState(false); // eslint-disable-line
   
   const value = useContext(TestContect);
 
   const data = new Request();
-
-  useEffect(() => {
-    getRequest(); // eslint-disable-line
-  }, []);
 
   const getRequest = () => {
     data
@@ -30,6 +25,10 @@ function ListProd() {
         setDatabase(res);
       });
   };
+
+  useEffect(() => {
+    getRequest(); 
+  }, []);
 
   const showModalWindow = () => {
     setShowModal(!showModal);
@@ -142,7 +141,6 @@ function ListProd() {
                   key={item.id} 
                   removeItem={removeItem}
                   onActiveCard={onActiveCard}
-                  load={load}
                 />
               );
             })

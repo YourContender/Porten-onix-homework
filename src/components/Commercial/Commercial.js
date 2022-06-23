@@ -23,9 +23,7 @@ class Commercial extends React.Component {
           </div>
           <div className="commercial">
             {
-              data.map((item) => {
-                const { title, price, id } = item;
-
+              data.map(({ title, price, id }) => {
                 return (
                   <div className="commercial_item" key={id}>
                     <div className="commercial_item_block">

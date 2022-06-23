@@ -39,7 +39,7 @@ export default function FilterView({
                   );
                 })
             }
-          <Dropdown.Item key={country.length + 1} onClick={() => cancelFilterMethod()}>сброс</Dropdown.Item>
+          <Dropdown.Item key={country.length + 1} onClick={cancelFilterMethod}>сброс</Dropdown.Item>
         </DropdownButton>
       </div>
     </ButtonGroup>

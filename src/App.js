@@ -1,9 +1,9 @@
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import ListPage from './pages/ListPage';
-import './App.sass';
 import TestContect from './context';
+import './App.sass';
 
 function App() {
   const [bg, setBg] = useState(false);

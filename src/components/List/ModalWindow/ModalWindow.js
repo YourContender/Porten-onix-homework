@@ -74,7 +74,7 @@ export default ModalWindow;
 ModalWindow.propTypes = {
   addNewProduct: PropTypes.func,
   showModalWindow: PropTypes.func,
-  id: PropTypes.number,
+  id: PropTypes.string,
   order: PropTypes.number
 };
 
