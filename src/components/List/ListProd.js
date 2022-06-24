@@ -14,7 +14,6 @@ function ListProd() {
   const [newCard, setNewCard] = useState(null);
   
   const value = useContext(TestContect);
-  const valu1e = useContext(TestContect);
 
   const data = new Request();
 
