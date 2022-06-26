@@ -112,10 +112,10 @@ function ListProd() {
           showModal 
               && (
                 <ModalWindow 
-                  showModalWindow={() => showModalWindow()}
+                  showModalWindow={showModalWindow}
                   addNewProduct={addNewProduct}
-                  order={filtered.length}
-                  id={filtered[filtered.length - 1].id}
+                  initOrder={filtered.length}
+                  initId={filtered[filtered.length - 1].id}
                 />
               )
         }

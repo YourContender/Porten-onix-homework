@@ -4,7 +4,9 @@ import {
 import PropTypes from 'prop-types';
 import './ModalWindow.sass';
 
-export default function ModalWindowView({ handleInput, showModalWindow, onSubmit }) {
+export default function ModalWindowView({ 
+  showModalWindow, onSubmit, setUrl, setPrice, setTitle, setDescription, setCurrency, setCountry 
+}) {
   return (
     <div className="modal_container">
       <Modal.Dialog size="lg" className="modal_dialog">
@@ -20,7 +22,7 @@ export default function ModalWindowView({ handleInput, showModalWindow, onSubmit
                 <input 
                   className="modal_form_input" 
                   name="title" 
-                  onChange={handleInput} 
+                  onChange={(e) => setTitle(e.target.value)} 
                   type="text" 
                   placeholder="enter title"
                 />
@@ -31,7 +33,7 @@ export default function ModalWindowView({ handleInput, showModalWindow, onSubmit
                 <input 
                   className="modal_form_input" 
                   name="price" 
-                  onChange={handleInput} 
+                  onChange={(e) => setPrice(e.target.value)} 
                   type="text" 
                   placeholder="enter price"
                 />
@@ -42,7 +44,7 @@ export default function ModalWindowView({ handleInput, showModalWindow, onSubmit
                 <input 
                   className="modal_form_input" 
                   name="description" 
-                  onChange={handleInput} 
+                  onChange={(e) => setDescription(e.target.value)} 
                   type="text" 
                   placeholder="enter description"
                 />
@@ -53,7 +55,7 @@ export default function ModalWindowView({ handleInput, showModalWindow, onSubmit
                 <input 
                   className="modal_form_input" 
                   name="url" 
-                  onChange={handleInput} 
+                  onChange={(e) => setUrl(e.target.value)}  
                   type="text" 
                   placeholder="enter url photo"
                 />
@@ -65,7 +67,7 @@ export default function ModalWindowView({ handleInput, showModalWindow, onSubmit
                 <Form.Label><p className="modal_form_choose">Choose currency</p></Form.Label>
                 <Form.Select 
                   name="currency" 
-                  onChange={handleInput} 
+                  onChange={(e) => setCurrency(e.target.value)} 
                   defaultValue="Choose currency"
                 >
                   <option>choose currency</option>
@@ -79,7 +81,7 @@ export default function ModalWindowView({ handleInput, showModalWindow, onSubmit
                 <Form.Label><p className="modal_form_choose">Choose country</p></Form.Label>
                 <Form.Select 
                   name="country" 
-                  onChange={handleInput} 
+                  onChange={(e) => setCountry(e.target.value)}  
                   defaultValue="Choose country"
                 >
                   <option>choose country</option>
@@ -116,13 +118,23 @@ export default function ModalWindowView({ handleInput, showModalWindow, onSubmit
 }
 
 ModalWindowView.propTypes = {
-  handleInput: PropTypes.func,
   showModalWindow: PropTypes.func,  
-  onSubmit: PropTypes.func
+  onSubmit: PropTypes.func,
+  setUrl: PropTypes.string, 
+  setPrice: PropTypes.string, 
+  setTitle: PropTypes.string, 
+  setDescription: PropTypes.string, 
+  setCurrency: PropTypes.string, 
+  setCountry: PropTypes.string 
 };
 
 ModalWindowView.defaultProps = { 
-  handleInput: () => null,
   showModalWindow: () => null,  
-  onSubmit: () => null
+  onSubmit: () => null,
+  setUrl: '', 
+  setPrice: '', 
+  setTitle: '', 
+  setDescription: '', 
+  setCurrency: '', 
+  setCountry: '' 
 };

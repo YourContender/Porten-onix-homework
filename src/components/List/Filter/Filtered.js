@@ -1,40 +1,30 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import FilterView from './FilterView';
 import './Filtered.sass';
 
-class Filtered extends React.Component {
-  constructor(props) {
-    super(props);
+function Filtered({
+  filteredPriceMethod, filteredCountryMethod, showModalWindow, cancelFilterMethod
+}) {
+  const [initCountry] = useState(['Ukraine', 'Poland', 'USA', 'UK', 'Canada']);  
 
-    this.state = {
-      country: ['Ukraine', 'Poland', 'USA', 'UK', 'Canada']
-    };
-  }
-
-  filterMethod = (id) => {
-    const { filteredPriceMethod } = this.props;
+  const filterMethod = (id) => {
     return filteredPriceMethod(id);
   };
 
-  filterCountryMethod = (country) => {
-    const { filteredCountryMethod } = this.props;
+  const filterCountryMethod = (country) => {
     return filteredCountryMethod(country);
   };
 
-  render() {
-    const { country } = this.state;
-    const { showModalWindow, cancelFilterMethod } = this.props;
-    return (
-      <FilterView 
-        showModalWindow={showModalWindow}
-        cancelFilterMethod={cancelFilterMethod}
-        filterCountryMethod={this.filterCountryMethod}
-        filterMethod={this.filterMethod}
-        country={country}
-      />
-    );
-  }
+  return (
+    <FilterView 
+      showModalWindow={showModalWindow}
+      cancelFilterMethod={cancelFilterMethod}
+      filterCountryMethod={filterCountryMethod}
+      filterMethod={filterMethod}
+      country={initCountry}
+    />
+  );
 }
 
 export default Filtered;

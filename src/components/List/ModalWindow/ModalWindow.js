@@ -1,72 +1,57 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Request from '../../../request';
 import ModalWindowView from './ModalWindowView';
 
-class ModalWindow extends React.Component {
-  constructor(props) { // eslint-disable-line
-    super(props);
+function ModalWindow({
+  showModalWindow, initOrder, initId, addNewProduct 
+}) {
+  const [id] = useState(+initId + 1);
+  const [order] = useState(+initOrder + 1);
+  const [active] = useState(false);
+  const [url, setUrl] = useState('');
+  const [price, setPrice] = useState(0);
+  const [title, setTitle] = useState('');
+  const [country, setCountry] = useState({});
+  const [currency, setCurrency] = useState('');
+  const [description, setDescription] = useState('');
 
-    this.state = {};
-  }
-  
-  data = new Request();
+  const data = new Request();
 
-  componentDidMount() {
-    document.addEventListener('keydown', this.onClickEscape);
-  }
+  useEffect(() => {
+    document.addEventListener('keydown', onClickEscape); // eslint-disable-line
+  });
 
-  onClickEscape = (e) => {
-    const { showModalWindow } = this.props;
-
+  const onClickEscape = (e) => {
     if (e.code === 'Escape') {
       showModalWindow();
     }
   };
 
-  handleInput = (e) => {
-    this.setState({
-      [e.target.name]: e.target.value
-    });
-  };
-
-  onSubmit = () => {
-    const {
-      addNewProduct, showModalWindow, id, order
-    } = this.props;
-
-    const result = this.state;
-
-    const defaultValue = {
-      url: result.url === undefined ? '' : result.url,
-      price: result.price === undefined ? '' : result.price,  
-      title: result.title === undefined ? '' : result.title,
-      description: result.description === undefined ? '' : result.description,
-      currency: result.currency === undefined ? '' : result.currency,
-      country: result.country === undefined ? '' : result.country,
-      id: +id + 1,
-      order: +order + 1,
-      active: false,
+  const onSubmit = () => {
+    const obj = {
+      url, price, description, currency, title, country, active, id, order 
     };
-
-    this.data
-      .addNewItem({ ...result, ...defaultValue })
+    
+    data
+      .addNewItem(obj)
       .then((res) => addNewProduct(res));
 
     showModalWindow();
   };
-    
-  render() {
-    const { showModalWindow } = this.props;
-
-    return (
-      <ModalWindowView 
-        handleInput={this.handleInput}
-        onSubmit={this.onSubmit}
-        showModalWindow={showModalWindow}
-      />
-    );
-  }
+  
+  return (
+    <ModalWindowView 
+      onSubmit={onSubmit}
+      showModalWindow={showModalWindow}
+      setUrl={setUrl}
+      setPrice={setPrice}
+      setTitle={setTitle}
+      setDescription={setDescription}
+      setCurrency={setCurrency}
+      setCountry={setCountry}
+    />
+  );
 }
 
 export default ModalWindow;
@@ -74,13 +59,13 @@ export default ModalWindow;
 ModalWindow.propTypes = {
   addNewProduct: PropTypes.func,
   showModalWindow: PropTypes.func,
-  id: PropTypes.string,
-  order: PropTypes.number
+  initId: PropTypes.string,
+  initOrder: PropTypes.number
 };
 
 ModalWindow.defaultProps = { 
   addNewProduct: () => null,
   showModalWindow: () => null,
-  id: 'default id',
-  order: 'default order'
+  initId: 'default id',
+  initOrder: 'default order'
 };

@@ -1,63 +1,48 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Card } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import CardWatchView from './CardWatchView';
 import './CardWatch.sass';
 
-class CardWatch extends React.Component {
-  constructor(props) {
-    super(props);
+function CardWatch({
+  removeItem, item, dragStartHandler, dragEndHandler, dragOverHandler, dropHandler, onActiveCard 
+}) {
+  const [spinner, setSpinner] = useState(false);
 
-    this.state = {
-      spinner: false
-    };
-  }
-
-  onActiveItem = (e, id) => {
-    const { onActiveCard } = this.props;
+  const onActiveItem = (e, id) => {
     return e.target.textContent !== 'Удалить' && onActiveCard(id);
   };
 
-  removeCard = (id) => {
-    const { removeItem } = this.props;
-    this.setState({
-      spinner: true
-    });
-
+  const removeCard = (id) => {
+    setSpinner(true);
     removeItem(id);
   };
     
-  render() {
-    const {
-      item, dragStartHandler, dragEndHandler, dragOverHandler, dropHandler, onActiveCard 
-    } = this.props;
-    const { url, active, id } = item;
-    const { spinner } = this.state;
-    const photoLink = typeof url === 'string' ? url : `${url.path}.${url.extension}`;
-    const activeClass = active ? 'test_active' : '';
+  const { url, active, id } = item;
+  const photoLink = typeof url === 'string' ? url : `${url.path}.${url.extension}`;
+  const activeClass = active ? 'test_active' : '';
 
-    return (
-      <Card 
-        onDragStart={() => dragStartHandler(item)}
-        onDragLeave={() => dragEndHandler()}
-        onDragEnd={() => dragEndHandler()}
-        onDragOver={(e) => dragOverHandler(e, item)}
-        onDrop={(e) => dropHandler(e, item)}
-        draggable
-        className="card_container" 
-        onClick={(e) => this.onActiveItem(e, id)}
-      >
-        <CardWatchView 
-          photoLink={photoLink}
-          item={item}
-          activeClass={activeClass}
-          removeCard={this.removeCard}
-          onActiveCard={onActiveCard}
-          spinner={spinner}
-        />
-      </Card>
-    );
-  }
+  return (
+    <Card 
+      onDragStart={() => dragStartHandler(item)}
+      onDragLeave={() => dragEndHandler()}
+      onDragEnd={() => dragEndHandler()}
+      onDragOver={(e) => dragOverHandler(e, item)}
+      onDrop={(e) => dropHandler(e, item)}
+      draggable
+      className="card_container" 
+      onClick={(e) => onActiveItem(e, id)}
+    >
+      <CardWatchView 
+        photoLink={photoLink}
+        item={item}
+        activeClass={activeClass}
+        removeCard={removeCard}
+        onActiveCard={onActiveCard}
+        spinner={spinner}
+      />
+    </Card>
+  );
 }
 
 CardWatch.propTypes = {
