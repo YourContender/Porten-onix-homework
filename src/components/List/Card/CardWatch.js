@@ -10,7 +10,7 @@ function CardWatch({
   const [spinner, setSpinner] = useState(false);
 
   const onActiveItem = (e, id) => {
-    return e.target.textContent !== 'Удалить' && onActiveCard(id);
+    return e.target.name !== 'delete' && onActiveCard(id);
   };
 
   const removeCard = (id) => {

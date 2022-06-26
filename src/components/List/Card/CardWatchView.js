@@ -36,7 +36,7 @@ function CardWatchView({
         {spinner && <Spinner animation="border" />}
       </div>
       <div className="card_btns">
-        <Button variant="danger" className="delete_btn" onClick={() => removeCard(item.id)}>Удалить</Button>
+        <Button variant="danger" className="delete_btn" name="delete" onClick={() => removeCard(item.id)}>Удалить</Button>
         <Button variant="primary">Купить</Button>
       </div>
     </div>

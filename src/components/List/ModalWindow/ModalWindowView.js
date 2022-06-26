@@ -120,21 +120,21 @@ export default function ModalWindowView({
 ModalWindowView.propTypes = {
   showModalWindow: PropTypes.func,  
   onSubmit: PropTypes.func,
-  setUrl: PropTypes.string, 
-  setPrice: PropTypes.string, 
-  setTitle: PropTypes.string, 
-  setDescription: PropTypes.string, 
-  setCurrency: PropTypes.string, 
-  setCountry: PropTypes.string 
+  setUrl: PropTypes.func, 
+  setPrice: PropTypes.func, 
+  setTitle: PropTypes.func, 
+  setDescription: PropTypes.func, 
+  setCurrency: PropTypes.func, 
+  setCountry: PropTypes.func 
 };
 
 ModalWindowView.defaultProps = { 
   showModalWindow: () => null,  
   onSubmit: () => null,
-  setUrl: '', 
-  setPrice: '', 
-  setTitle: '', 
-  setDescription: '', 
-  setCurrency: '', 
-  setCountry: '' 
+  setUrl: () => null, 
+  setPrice: () => null, 
+  setTitle: () => null, 
+  setDescription: () => null, 
+  setCurrency: () => null, 
+  setCountry: () => null 
 };
