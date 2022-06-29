@@ -7,12 +7,12 @@ import './Nav.sass';
 import ThemeContext from '../../context/ThemeContext';
 
 function Nav() {
-  const [blockItems, setBlockItem] = useState([  // eslint-disable-line
+  const [blockItems] = useState([  
     { value: 'Понравилось', id: 12 },
     { value: 'Личный кабинет', id: 13 },
     { value: 'Настройки', id: 14 }
   ]);
-  const [blockImg, setBlockImg] = useState([basket, search]);  // eslint-disable-line
+  const [blockImg] = useState([basket, search]); 
   const [active, setActive] = useState(false);
 
   const value = useContext(ThemeContext);

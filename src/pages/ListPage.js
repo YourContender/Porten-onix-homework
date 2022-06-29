@@ -6,7 +6,7 @@ import ListProd from '../components/List/ListProd';
 function ListPage({ bg, setBg }) {
   return (
     <Layout>
-      <Button bg={bg} setBg={setBg} />
+      <Button bg={bg} setBg={setBg}/>
       <ListProd />
     </Layout>
   );

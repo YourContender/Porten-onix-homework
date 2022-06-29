@@ -3,8 +3,7 @@ import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
 import Nav from '../Nav/Nav';
 
-function Layout({ children }) {
-  const child = children;
+function Layout({ children: child }) {
   return (
     <>
       <Header />
@@ -22,9 +21,9 @@ function Layout({ children }) {
 export default Layout;
 
 Layout.propTypes = {
-  children: PropTypes.array // eslint-disable-line
+  children: PropTypes.node
 };
 
 Layout.defaultProps = { 
-  children: <Header />, 
+  children: null, 
 };

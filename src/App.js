@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import ListPage from './pages/ListPage';
@@ -7,7 +7,8 @@ import './App.sass';
 
 function App() {
   const [bg, setBg] = useState(false);
-  const theme = bg ? 'light' : 'dark';
+  const context = useContext(ThemeContext);
+  const theme = bg ? context.colorLight : context.colorDark;
 
   return (
     <ThemeContext.Provider value={theme}>
