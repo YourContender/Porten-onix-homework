@@ -1,11 +1,11 @@
 import React, { useContext } from 'react';
-import TestContect from '../../context';
+import ThemeContext from '../../context/ThemeContext';
 import log from '../../img/logo/log.png';
 import iconPhone from '../../img/logo/phone-icon.png'; 
 import './Header.sass';
 
 function Header() {
-  const value = useContext(TestContect);
+  const value = useContext(ThemeContext);
   return (
     <header className={value !== 'dark' ? 'light' : 'dark'}>
       <div className="container">

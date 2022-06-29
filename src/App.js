@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import ListPage from './pages/ListPage';
-import TestContect from './context';
+import ThemeContext from './context/ThemeContext';
 import './App.sass';
 
 function App() {
@@ -10,12 +10,12 @@ function App() {
   const theme = bg ? 'light' : 'dark';
 
   return (
-    <TestContect.Provider value={theme}>
+    <ThemeContext.Provider value={theme}>
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="list" element={<ListPage bg={bg} setBg={setBg} />} />
       </Routes>
-    </TestContect.Provider>
+    </ThemeContext.Provider>
   );
 }
 

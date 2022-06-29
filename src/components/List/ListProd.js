@@ -4,7 +4,7 @@ import CardWatch from './Card/CardWatch';
 import Request from '../../request';
 import ModalWindow from './ModalWindow/ModalWindow';
 import './ListProd.sass';
-import TestContect from '../../context';
+import ThemeContext from '../../context/ThemeContext';
 
 function ListProd() {
   const [filtered, setFiltered] = useState([]);
@@ -13,7 +13,7 @@ function ListProd() {
   const [currentCard, setCurrentCard] = useState(null);
   const [newCard, setNewCard] = useState(null);
   
-  const value = useContext(TestContect);
+  const value = useContext(ThemeContext);
 
   const data = new Request();
 

@@ -4,7 +4,7 @@ import basket from '../../img/logo/basket.png';
 import search from '../../img/logo/search.png';
 import logoShop from '../../img/logo/logo-porten.png';
 import './Nav.sass';
-import TestContect from '../../context';
+import ThemeContext from '../../context/ThemeContext';
 
 function Nav() {
   const [blockItems, setBlockItem] = useState([  // eslint-disable-line
@@ -15,7 +15,7 @@ function Nav() {
   const [blockImg, setBlockImg] = useState([basket, search]);  // eslint-disable-line
   const [active, setActive] = useState(false);
 
-  const value = useContext(TestContect);
+  const value = useContext(ThemeContext);
 
   return (
     <nav className={value !== 'light' ? 'nav_dark' : 'nav_light'}>
