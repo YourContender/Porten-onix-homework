@@ -13,7 +13,7 @@ function ListProd() {
   const [currentCard, setCurrentCard] = useState(null);
   const [newCard, setNewCard] = useState(null);
   
-  const value = useContext(ThemeContext);
+  const { themeColor } = useContext(ThemeContext); 
 
   const data = new Request();
 
@@ -106,7 +106,7 @@ function ListProd() {
   };
 
   return (
-    <div className={value !== 'light' ? 'list_container_dark' : 'list_container_light'}>
+    <div className={themeColor !== 'light' ? 'list_container_dark' : 'list_container_light'}>
       <div className="list_container_items">
         {
           showModal 

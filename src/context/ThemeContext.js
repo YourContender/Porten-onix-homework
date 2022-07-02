@@ -1,11 +1,10 @@
 import React from 'react';
 
-const LIGHT_THEME = 'light';
 const DARK_THEME = 'dark';
 
 const ThemeContext = React.createContext({
-  colorDark: DARK_THEME,
-  colorLight: LIGHT_THEME,
+  color: DARK_THEME,
+  toggleColor: () => {}
 });
 
 export default ThemeContext;

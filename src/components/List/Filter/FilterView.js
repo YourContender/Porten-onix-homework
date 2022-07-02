@@ -27,17 +27,15 @@ export default function FilterView({
       <div className="filter_country">
         <DropdownButton as={ButtonGroup} title="Страны" id="bg-2">
           {
-                country.map((item, i) => {
-                  return (
-                    <Dropdown.Item 
-                      eventKey={i} 
-                      key={item} 
-                      onClick={() => filterCountryMethod(item)}
-                    >
-                      {item}
-                    </Dropdown.Item>
-                  );
-                })
+                country.map((item, i) => (
+                  <Dropdown.Item 
+                    eventKey={i} 
+                    key={item} 
+                    onClick={() => filterCountryMethod(item)}
+                  >
+                    {item}
+                  </Dropdown.Item>
+                ))
             }
           <Dropdown.Item key={country.length + 1} onClick={cancelFilterMethod}>сброс</Dropdown.Item>
         </DropdownButton>

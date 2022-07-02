@@ -5,9 +5,10 @@ import iconPhone from '../../img/logo/phone-icon.png';
 import './Header.sass';
 
 function Header() {
-  const value = useContext(ThemeContext);
+  const { themeColor } = useContext(ThemeContext); 
+
   return (
-    <header className={value !== 'dark' ? 'light' : 'dark'}>
+    <header className={themeColor !== 'dark' ? 'light' : 'dark'}>
       <div className="container">
         <div className="header">
           <div className="header_info">
@@ -26,7 +27,7 @@ function Header() {
             <img src={log} alt="log" />
             <span>Войти / Регистрация</span>
             <span>
-              {value}
+              {themeColor}
               {' '}
               theme
             </span>
