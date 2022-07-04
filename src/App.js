@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import ListPage from './pages/ListPage';
@@ -7,20 +7,16 @@ import Button from './components/Button/Button';
 import './App.sass';
 
 function App() {
-  const [init, setInit] = useState({
-    themeColor: 'dark', // eslint-disable-line
-    chooseTheme: chooseTheme, // eslint-disable-line
-  });
- 
+  const [themeColor, setThemeColor] = useState('dark');
+
   function chooseTheme(propsColor) {
-    setInit({ 
-      ...init,
-      themeColor: propsColor 
-    }); // eslint-disable-line
+    setThemeColor(propsColor);
   }
+  
+  const value = useMemo(() => ({ themeColor, chooseTheme }), [themeColor, chooseTheme]);
 
   return (
-    <ThemeContext.Provider value={init}>
+    <ThemeContext.Provider value={value}>
       <Button />
       <Routes>
         <Route path="/" element={<HomePage />} />
