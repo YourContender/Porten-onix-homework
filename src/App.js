@@ -5,6 +5,7 @@ import ListPage from './pages/ListPage';
 import ThemeContext from './context/ThemeContext';
 import Button from './components/Button/Button';
 import './App.sass';
+import withLayout from './components/Layout/withLayout';
 
 function App() {
   const [themeColor, setThemeColor] = useState('dark');
@@ -15,12 +16,15 @@ function App() {
   
   const value = useMemo(() => ({ themeColor, chooseTheme }), [themeColor, chooseTheme]);
 
+  const HomePageComponent = withLayout(HomePage);
+  const ListPageComponent = withLayout(ListPage);
+
   return (
     <ThemeContext.Provider value={value}>
       <Button />
       <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="list" element={<ListPage />} />
+        <Route path="/" element={<HomePageComponent />} />
+        <Route path="list" element={<ListPageComponent />} />
       </Routes>
     </ThemeContext.Provider>
   );
