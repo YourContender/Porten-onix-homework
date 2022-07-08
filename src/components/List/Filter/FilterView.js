@@ -2,30 +2,32 @@ import {
   Button, ButtonGroup, Dropdown, DropdownButton 
 } from 'react-bootstrap';
 import PropTypes from 'prop-types';
+import { useTranslation } from "react-i18next"; 
 
 export default function FilterView({
   showModalWindow, filterMethod, cancelFilterMethod, country, filterCountryMethod 
 }) {
+  const {t} = useTranslation();
   return (
     <ButtonGroup>
       <div>
         <Button 
           onClick={() => showModalWindow()}
         >
-          Добавить
+          {t('add')}
         </Button>
       </div>
 
       <div className="filter_price">
-        <DropdownButton as={ButtonGroup} title="Сортировка" id="bg-1">
-          <Dropdown.Item eventKey="1" onClick={() => filterMethod('1')}>По нарастанию цены</Dropdown.Item>
-          <Dropdown.Item eventKey="2" onClick={() => filterMethod('2')}>По убыванию цены</Dropdown.Item>
-          <Dropdown.Item eventKey="3" onClick={() => cancelFilterMethod()}>сброс фильтра</Dropdown.Item>
+        <DropdownButton as={ButtonGroup} title={t('sort')} id="bg-1">
+          <Dropdown.Item eventKey="1" onClick={() => filterMethod('1')}>{t('ascending')}</Dropdown.Item>
+          <Dropdown.Item eventKey="2" onClick={() => filterMethod('2')}>{t('descending')}</Dropdown.Item>
+          <Dropdown.Item eventKey="3" onClick={() => cancelFilterMethod()}>{t('reset')}</Dropdown.Item>
         </DropdownButton>
       </div>
 
       <div className="filter_country">
-        <DropdownButton as={ButtonGroup} title="Страны" id="bg-2">
+        <DropdownButton as={ButtonGroup} title={t('country')} id="bg-2">
           {
                 country.map((item, i) => (
                   <Dropdown.Item 
@@ -33,11 +35,11 @@ export default function FilterView({
                     key={item} 
                     onClick={() => filterCountryMethod(item)}
                   >
-                    {item}
+                    {t(item)}
                   </Dropdown.Item>
                 ))
             }
-          <Dropdown.Item key={country.length + 1} onClick={cancelFilterMethod}>сброс</Dropdown.Item>
+          <Dropdown.Item key={country.length + 1} onClick={cancelFilterMethod}>{t('reset')}</Dropdown.Item>
         </DropdownButton>
       </div>
     </ButtonGroup>

@@ -2,23 +2,25 @@ import {
   Button, Form, Modal, Row 
 } from 'react-bootstrap';
 import PropTypes from 'prop-types';
+import { useTranslation } from "react-i18next"; 
 import './ModalWindow.sass';
 
 export default function ModalWindowView({ 
   showModalWindow, onSubmit, setUrl, setPrice, setTitle, setDescription, setCurrency, setCountry 
 }) {
+  const {t} = useTranslation();
   return (
     <div className="modal_container">
       <Modal.Dialog size="lg" className="modal_dialog">
         <div className="modal_window">
           <Modal.Header>
-            <Modal.Title>Добавление нового товара: </Modal.Title>
+            <Modal.Title>{t('add-new-item')}</Modal.Title>
           </Modal.Header>
 
           <Form className="modal_form">
             <Row className="mb-3, ml-3">
               <div className="modal_form_container">
-                <span className="modal_form_text">Enter title: </span>
+                <span className="modal_form_text">{t('add-title')}</span>
                 <input 
                   className="modal_form_input" 
                   name="title" 
@@ -29,7 +31,7 @@ export default function ModalWindowView({
               </div>
 
               <div className="modal_form_container">
-                <span className="modal_form_text">Enter price: </span>
+                <span className="modal_form_text">{t('add-price')}</span>
                 <input 
                   className="modal_form_input" 
                   name="price" 
@@ -40,7 +42,7 @@ export default function ModalWindowView({
               </div>
 
               <div className="modal_form_container">
-                <span className="modal_form_text">Enter description: </span>
+                <span className="modal_form_text">{t('add-description')}</span>
                 <input 
                   className="modal_form_input" 
                   name="description" 
@@ -51,7 +53,7 @@ export default function ModalWindowView({
               </div>
 
               <div className="modal_form_container">
-                <span className="modal_form_text">Enter url: </span>
+                <span className="modal_form_text">{t('add-url')}</span>
                 <input 
                   className="modal_form_input" 
                   name="url" 
@@ -64,13 +66,13 @@ export default function ModalWindowView({
 
             <Row className="mb-3">
               <Form.Group controlId="form-5">
-                <Form.Label><p className="modal_form_choose">Choose currency</p></Form.Label>
+                <Form.Label><p className="modal_form_choose">{t('add-currency')}</p></Form.Label>
                 <Form.Select 
                   name="currency" 
                   onChange={(e) => setCurrency(e.target.value)} 
                   defaultValue="Choose currency"
                 >
-                  <option>choose currency</option>
+                  <option>{t('choose-currency')}</option>
                   <option>UAH</option>
                   <option>USD</option>
                   <option>EUR</option>
@@ -78,18 +80,18 @@ export default function ModalWindowView({
               </Form.Group>
 
               <Form.Group controlId="form-6">
-                <Form.Label><p className="modal_form_choose">Choose country</p></Form.Label>
+                <Form.Label><p className="modal_form_choose">{t('add-country')}</p></Form.Label>
                 <Form.Select 
                   name="country" 
                   onChange={(e) => setCountry(e.target.value)}  
                   defaultValue="Choose country"
                 >
-                  <option>choose country</option>
-                  <option>Ukraine</option>
-                  <option>Poland</option>
-                  <option>UK</option>
-                  <option>USA</option>
-                  <option>Canada</option>
+                  <option>{t('choose-country')}</option>
+                  <option>{t('ua')}</option>
+                  <option>{t('pl')}</option>
+                  <option>{t('uk')}</option>
+                  <option>{t('us')}</option>
+                  <option>{t('cd')}</option>
                 </Form.Select>
               </Form.Group>
             </Row>
@@ -99,7 +101,7 @@ export default function ModalWindowView({
               className="modal_btn"
               onClick={() => onSubmit()}
             >
-              Submit
+              {t('submit')}
             </Button>
           </Form>
 
@@ -108,7 +110,7 @@ export default function ModalWindowView({
               variant="secondary"
               onClick={() => showModalWindow()}
             >
-              Close
+              {t('close')}
             </Button>
           </Modal.Footer>
         </div>

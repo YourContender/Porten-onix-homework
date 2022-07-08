@@ -2,10 +2,12 @@ import {
   Button, ListGroupItem, ListGroup, Spinner, Card 
 } from 'react-bootstrap';
 import PropTypes from 'prop-types';
+import { useTranslation } from "react-i18next"; 
 
 function CardWatchView({
   activeClass, item, photoLink, spinner, removeCard 
 }) {
+  const {t} = useTranslation();
   return (
     <div className={activeClass}>
       <Card.Img className="card_img" variant="top" src={photoLink} />
@@ -18,17 +20,17 @@ function CardWatchView({
       </Card.Body>
       <ListGroup className="list-group-flush">
         <ListGroupItem className="card_descr">
-          <strong className="card_descr_price">Price: </strong> 
+          <strong className="card_descr_price">{t('price-card')}: </strong> 
           {' '}
           {item.price}
         </ListGroupItem>
         <ListGroupItem>
-          <strong>Currency: </strong>
+          <strong>{t('currency-card')}: </strong>
           {item.currency}
         </ListGroupItem> 
                 
         <ListGroupItem>
-          <strong>Country: </strong>
+          <strong>{t('country-card')}: </strong>
           {item.country}
         </ListGroupItem>
       </ListGroup>
@@ -42,12 +44,12 @@ function CardWatchView({
           name="delete" 
           onClick={() => removeCard(item.id)}
         >
-          Удалить
+          {t('remove')} 
         </Button>
         <Button 
           variant="primary"
         >
-          Купить
+          {t('buy')}
         </Button>
       </div>
     </div>

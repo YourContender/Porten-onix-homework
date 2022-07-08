@@ -1,32 +1,29 @@
+import { useTranslation } from "react-i18next"; 
 import PropTypes from 'prop-types';
 
 export default function FooterView({ category }) {
+  const {t} = useTranslation();
   return (
     <footer>
       <div className="footer">
         <div className="container">
           <div className="footer_block">
             <div className="footer_about">
-              <h4>About shop</h4>
+              <h4>{t('footer-title')}</h4>
               <div className="footer_about_box">
                 <span>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mi semper 
-                  viverra nunc cursus tortor lectus nunc nulla nibh. Egestas amet 
-                  consectetur vel vitae aliquam dictum suspendisse. Lobortis eget 
-                  consequat, tellus et et sed turpis. Pretium quisque vitae, amet, 
-                  porttitor odio ultricies massa pharetra leo. Et ipsum urna fames 
-                  in sit mi ultrices nisi, nunc.
+                  {t('footer-about')}
                 </span>
               </div>
             </div>
             <div className="footer_category">
-              <h4>Категории</h4>
+              <h4>{t('category')}</h4>
               <div className="footer_category_list">
                 {
                   category.map((item) => {
                     return (
                       <div className="item" key={item}>
-                        <span>{item}</span>
+                        <span>{t(item)}</span>
                       </div>
                     );
                   })
@@ -34,14 +31,13 @@ export default function FooterView({ category }) {
               </div>
             </div>
             <div className="footer_link">
-              <h4>Рaссылка</h4>
+              <h4>{t('newsletter')}</h4>
               <span>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                Mi semper viverra nunc cursus tortor lectus nunc nulla nibh.
+                {t('newsletter-about')}
               </span>
               <div className="footer_link_box">
                 <input className="input" placeholder="enter your e-mail" type="text" />
-                <button type="button">подписаться</button>
+                <button type="button">{t('newsletter-button')}</button>
               </div>
             </div>
           </div>

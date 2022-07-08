@@ -1,15 +1,17 @@
 import React, { useState } from 'react';
 import watch from '../../img/logo/watch.png';
+import { useTranslation } from "react-i18next"; 
 import './Commercial.sass';
 
 function Commercial() {
+  const {t} = useTranslation();
   const [data] = useState([]);
   
   return (
     <section>
       <div className="container">
         <div className="title">
-          <h4>New Arrivals</h4>
+          <h4>{t('commercial')}</h4>
           <div className="line" />
         </div>
         <div className="commercial">

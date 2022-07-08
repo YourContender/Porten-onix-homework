@@ -1,11 +1,13 @@
 import React, { useContext } from 'react';
 import ThemeContext from '../../context/ThemeContext';
 import log from '../../img/logo/log.png';
-import iconPhone from '../../img/logo/phone-icon.png'; 
+import iconPhone from '../../img/logo/phone-icon.png';
+import { useTranslation } from "react-i18next"; 
 import './Header.sass';
 
 function Header() {
   const { themeColor } = useContext(ThemeContext); 
+  const {t} = useTranslation();
 
   return (
     <header className={themeColor !== 'dark' ? 'light' : 'dark'}>
@@ -17,7 +19,7 @@ function Header() {
               <span>123(456) 78 99 10</span>
             </div>
             <div className="header_info_link">
-              <span>Работаем 7 дней в неделю</span>
+              <span>{t('schedule')}</span>
             </div>
             <div className="header_info_link">
               <span>9:00 — 18:00</span>
@@ -25,7 +27,7 @@ function Header() {
           </div>
           <div className="header_log">
             <img src={log} alt="log" />
-            <span>Войти / Регистрация</span>
+            <span>{t('login')}</span>
             <span>
               {themeColor}
               {' '}

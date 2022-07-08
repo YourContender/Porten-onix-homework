@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import FilterView from './FilterView';
+import { useTranslation } from "react-i18next"; 
 import './Filtered.sass';
 
 function Filtered({
   filteredPriceMethod, filteredCountryMethod, showModalWindow, cancelFilterMethod
 }) {
-  const [initCountry] = useState(['Ukraine', 'Poland', 'USA', 'UK', 'Canada']);  
+  const {t} = useTranslation();
+  const [initCountry] = useState(['ua', 'pl', 'us', 'uk', 'cd']);  
 
   const filterMethod = (id) => {
     return filteredPriceMethod(id);

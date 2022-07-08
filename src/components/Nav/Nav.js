@@ -3,18 +3,19 @@ import { Link } from 'react-router-dom';
 import basket from '../../img/logo/basket.png';
 import search from '../../img/logo/search.png';
 import logoShop from '../../img/logo/logo-porten.png';
-import './Nav.sass';
 import ThemeContext from '../../context/ThemeContext';
+import { useTranslation } from "react-i18next"; 
+import './Nav.sass';
 
 function Nav() {
+  const {t} = useTranslation();
   const [blockItems] = useState([   
-    { value: 'Понравилось', id: 12 },
-    { value: 'Личный кабинет', id: 13 },
-    { value: 'Настройки', id: 14 }
+    { value: 'shop', id: 12 },
+    { value: 'log', id: 13 },
+    { value: 'setting', id: 14 }
   ]);
   const [blockImg] = useState([basket, search]); 
   const [active, setActive] = useState(false);
-
   const { themeColor } = useContext(ThemeContext);
 
   return (
@@ -29,18 +30,16 @@ function Nav() {
             </div>
             <div className={active ? 'nav_block_link_active' : 'nav_block_link'}>
               {
-                blockItems.map((item) => {
-                  return (
+                blockItems.map(({id, value}) => (
                     <Link
-                      to={item.id === 12 ? '/list' : '/'} 
+                      to={id === 12 ? '/list' : '/'} 
                       className="block_item" 
-                      key={item.id}
+                      key={id}
                       onClick={() => setActive(false)}
                     >
-                      <span>{item.value}</span>
+                      <span>{t(value)}</span>
                     </Link>
-                  );
-                })
+                ))
               }
 
               {

@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import watch from '../../img/logo/watch.png';
+import { useTranslation } from "react-i18next"; 
 import './Content.sass';
 
 function Content() {
+  const {t} = useTranslation();
   const [data] = useState(
     [
       {
@@ -29,7 +31,7 @@ function Content() {
         <div className="content_season">
                       
           <div className="content_season_title">
-            <h2>СЕЗОН 2020/21</h2>
+            <h2>{t('content-title')}</h2>
             <div className="line" />
           </div>
                       
@@ -56,10 +58,10 @@ function Content() {
         <div className="content_catalog">
           <div className="content_collection">
             <div>
-              <span className="text_block">New Collection</span>
+              <span className="text_block">{t('catalog')}</span>
             </div>
             <div>
-              <button type="button" className="btn_block">Collection</button>
+              <button type="button" className="btn_block">{t('catalog-button')}</button>
             </div>
           </div>
         </div>
