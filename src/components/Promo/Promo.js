@@ -1,10 +1,10 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next'; 
 import logoShopSecond from '../../img/logo/logo-porten-2.png';
-import { useTranslation } from "react-i18next"; 
 import './Promo.sass';
 
 function Promo() {
-  const {t} = useTranslation();
+  const { t } = useTranslation();
   return (
     <section>
       <div className="promo">

@@ -5,6 +5,7 @@ import Request from '../../request';
 import ModalWindow from './ModalWindow/ModalWindow';
 import './ListProd.sass';
 import ThemeContext from '../../context/ThemeContext';
+// import { useDispatch, useSelector } from 'react-redux';
 
 function ListProd() {
   const [filtered, setFiltered] = useState([]);
@@ -14,6 +15,8 @@ function ListProd() {
   const [newCard, setNewCard] = useState(null);
   
   const { themeColor } = useContext(ThemeContext); 
+  // const dispatch = useDispatch();
+  // const listData = useSelector();
 
   const data = new Request();
 
@@ -125,6 +128,7 @@ function ListProd() {
             filteredPriceMethod={filteredPriceMethod}
             filteredCountryMethod={filteredCountryMethod} 
             cancelFilterMethod={cancelFilterMethod}
+            getRequest={getRequest}
           />
         </div>
 

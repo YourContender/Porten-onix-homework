@@ -20,8 +20,8 @@ function App() {
   const value = useMemo(() => ({ themeColor, chooseTheme }), [themeColor, chooseTheme]);
 
   const changeLanguage = (lng) => {
-    i18n.changeLanguage(lng)
-  }
+    i18n.changeLanguage(lng);
+  };
 
   return (
     <ThemeContext.Provider value={value}>

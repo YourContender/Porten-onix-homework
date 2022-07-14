@@ -1,14 +1,14 @@
 import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next'; 
 import basket from '../../img/logo/basket.png';
 import search from '../../img/logo/search.png';
 import logoShop from '../../img/logo/logo-porten.png';
 import ThemeContext from '../../context/ThemeContext';
-import { useTranslation } from "react-i18next"; 
 import './Nav.sass';
 
 function Nav() {
-  const {t} = useTranslation();
+  const { t } = useTranslation();
   const [blockItems] = useState([   
     { value: 'shop', id: 12 },
     { value: 'log', id: 13 },
@@ -30,15 +30,15 @@ function Nav() {
             </div>
             <div className={active ? 'nav_block_link_active' : 'nav_block_link'}>
               {
-                blockItems.map(({id, value}) => (
-                    <Link
-                      to={id === 12 ? '/list' : '/'} 
-                      className="block_item" 
-                      key={id}
-                      onClick={() => setActive(false)}
-                    >
-                      <span>{t(value)}</span>
-                    </Link>
+                blockItems.map(({ id, value }) => (
+                  <Link
+                    to={id === 12 ? '/list' : '/'} 
+                    className="block_item" 
+                    key={id}
+                    onClick={() => setActive(false)}
+                  >
+                    <span>{t(value)}</span>
+                  </Link>
                 ))
               }
 

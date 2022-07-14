@@ -2,13 +2,13 @@ import {
   Button, Form, Modal, Row 
 } from 'react-bootstrap';
 import PropTypes from 'prop-types';
-import { useTranslation } from "react-i18next"; 
+import { useTranslation } from 'react-i18next'; 
 import './ModalWindow.sass';
 
 export default function ModalWindowView({ 
   showModalWindow, onSubmit, setUrl, setPrice, setTitle, setDescription, setCurrency, setCountry 
 }) {
-  const {t} = useTranslation();
+  const { t } = useTranslation();
   return (
     <div className="modal_container">
       <Modal.Dialog size="lg" className="modal_dialog">

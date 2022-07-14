@@ -1,13 +1,13 @@
 import React, { useContext } from 'react';
+import { useTranslation } from 'react-i18next'; 
 import ThemeContext from '../../context/ThemeContext';
 import log from '../../img/logo/log.png';
 import iconPhone from '../../img/logo/phone-icon.png';
-import { useTranslation } from "react-i18next"; 
 import './Header.sass';
 
 function Header() {
   const { themeColor } = useContext(ThemeContext); 
-  const {t} = useTranslation();
+  const { t } = useTranslation();
 
   return (
     <header className={themeColor !== 'dark' ? 'light' : 'dark'}>

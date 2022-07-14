@@ -2,12 +2,12 @@ import {
   Button, ButtonGroup, Dropdown, DropdownButton 
 } from 'react-bootstrap';
 import PropTypes from 'prop-types';
-import { useTranslation } from "react-i18next"; 
+import { useTranslation } from 'react-i18next'; 
 
 export default function FilterView({
-  showModalWindow, filterMethod, cancelFilterMethod, country, filterCountryMethod 
+  showModalWindow, filterMethod, cancelFilterMethod, country, filterCountryMethod, getRequest
 }) {
-  const {t} = useTranslation();
+  const { t } = useTranslation();
   return (
     <ButtonGroup>
       <div>
@@ -42,6 +42,12 @@ export default function FilterView({
           <Dropdown.Item key={country.length + 1} onClick={cancelFilterMethod}>{t('reset')}</Dropdown.Item>
         </DropdownButton>
       </div>
+
+      <Button 
+        onClick={() => getRequest()}
+        >
+          обновить
+        </Button>
     </ButtonGroup>
   );
 }

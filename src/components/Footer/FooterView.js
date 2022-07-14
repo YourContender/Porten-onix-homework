@@ -1,8 +1,8 @@
-import { useTranslation } from "react-i18next"; 
+import { useTranslation } from 'react-i18next'; 
 import PropTypes from 'prop-types';
 
 export default function FooterView({ category }) {
-  const {t} = useTranslation();
+  const { t } = useTranslation();
   return (
     <footer>
       <div className="footer">

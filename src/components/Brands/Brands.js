@@ -1,9 +1,9 @@
+import { useTranslation } from 'react-i18next'; 
 import brand from '../../img/logo/brand.png';
-import { useTranslation } from "react-i18next"; 
 import './Brands.sass';
 
 function Brands() {
-  const {t} = useTranslation();
+  const { t } = useTranslation();
   return (
     <section>
       <div className="brands">

@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next'; 
 import watch from '../../img/logo/watch.png';
-import { useTranslation } from "react-i18next"; 
 import './Content.sass';
 
 function Content() {
-  const {t} = useTranslation();
+  const { t } = useTranslation();
   const [data] = useState(
     [
       {

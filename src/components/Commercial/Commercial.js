@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next'; 
 import watch from '../../img/logo/watch.png';
-import { useTranslation } from "react-i18next"; 
 import './Commercial.sass';
 
 function Commercial() {
-  const {t} = useTranslation();
+  const { t } = useTranslation();
   const [data] = useState([]);
   
   return (
