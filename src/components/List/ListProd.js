@@ -13,6 +13,7 @@ function ListProd() {
   const [showModal, setShowModal] = useState(false);
   const [currentCard, setCurrentCard] = useState(null);
   const [newCard, setNewCard] = useState(null);
+  const [loading, setLoading] = useState(false);
   
   const { themeColor } = useContext(ThemeContext); 
   // const dispatch = useDispatch();
@@ -21,17 +22,20 @@ function ListProd() {
   const data = new Request();
 
   const getRequest = () => {
+    setLoading(true);
+
     data
       .getData()
       .then((res) => {
         setFiltered(res);
         setDatabase(res);
-      });
+        setLoading(false)
+      })
   };
 
-  useEffect(() => {
-    getRequest(); 
-  }, []);
+  // useEffect(() => {
+  //   getRequest(); 
+  // }, []);
 
   const showModalWindow = () => {
     setShowModal(!showModal);
@@ -129,6 +133,8 @@ function ListProd() {
             filteredCountryMethod={filteredCountryMethod} 
             cancelFilterMethod={cancelFilterMethod}
             getRequest={getRequest}
+            loading={loading}
+            setLoading={setLoading}
           />
         </div>
 

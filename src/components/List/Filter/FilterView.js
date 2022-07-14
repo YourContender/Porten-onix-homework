@@ -1,13 +1,14 @@
 import {
-  Button, ButtonGroup, Dropdown, DropdownButton 
+  Button, ButtonGroup, Dropdown, DropdownButton, Spinner
 } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next'; 
 
 export default function FilterView({
-  showModalWindow, filterMethod, cancelFilterMethod, country, filterCountryMethod, getRequest
+  showModalWindow, filterMethod, cancelFilterMethod, country, filterCountryMethod, getRequest, loading, setLoading
 }) {
   const { t } = useTranslation();
+
   return (
     <ButtonGroup>
       <div>
@@ -46,7 +47,7 @@ export default function FilterView({
       <Button 
         onClick={() => getRequest()}
         >
-          обновить
+          {loading ? <Spinner animation="border" /> : 'Оновити'}
         </Button>
     </ButtonGroup>
   );

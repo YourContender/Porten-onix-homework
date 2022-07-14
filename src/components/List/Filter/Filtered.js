@@ -4,7 +4,7 @@ import FilterView from './FilterView';
 import './Filtered.sass';
 
 function Filtered({
-  filteredPriceMethod, filteredCountryMethod, showModalWindow, cancelFilterMethod, getRequest
+  filteredPriceMethod, filteredCountryMethod, showModalWindow, cancelFilterMethod, getRequest, loading, setLoading
 }) {
   const [initCountry] = useState(['ua', 'pl', 'us', 'uk', 'cd']);  
 
@@ -24,6 +24,8 @@ function Filtered({
       filterMethod={filterMethod}
       country={initCountry}
       getRequest={getRequest}
+      loading={loading}
+      setLoading={setLoading}
     />
   );
 }
