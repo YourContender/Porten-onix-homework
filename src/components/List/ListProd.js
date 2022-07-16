@@ -1,11 +1,12 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext} from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import Filtered from './Filter/Filtered';
 import CardWatch from './Card/CardWatch';
 import Request from '../../request';
 import ModalWindow from './ModalWindow/ModalWindow';
-import './ListProd.sass';
 import ThemeContext from '../../context/ThemeContext';
-// import { useDispatch, useSelector } from 'react-redux';
+import { cardsWatchList } from '../../store/watches/actions';
+import './ListProd.sass';
 
 function ListProd() {
   const [filtered, setFiltered] = useState([]);
@@ -16,8 +17,9 @@ function ListProd() {
   const [loading, setLoading] = useState(false);
   
   const { themeColor } = useContext(ThemeContext); 
-  // const dispatch = useDispatch();
-  // const listData = useSelector();
+  const dispatch = useDispatch();
+  const listData = useSelector(state => state.viewWatches.data);
+  console.log(listData);
 
   const data = new Request();
 
@@ -27,15 +29,16 @@ function ListProd() {
     data
       .getData()
       .then((res) => {
-        setFiltered(res);
+        // setFiltered(res);
         setDatabase(res);
-        setLoading(false)
-      })
+        setLoading(false);
+        dispatch(cardsWatchList(res))
+      });
   };
 
-  // useEffect(() => {
-  //   getRequest(); 
-  // }, []);
+  useEffect(() => {
+    getRequest(); 
+  }, []);
 
   const showModalWindow = () => {
     setShowModal(!showModal);
@@ -140,7 +143,7 @@ function ListProd() {
 
         <div className="list_items">
           {
-            filtered.map((item) => {
+            listData.map((item) => {
               return (
                 <CardWatch 
                   dragStartHandler={dragStartHandler}

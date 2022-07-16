@@ -46,9 +46,9 @@ export default function FilterView({
 
       <Button 
         onClick={() => getRequest()}
-        >
-          {loading ? <Spinner animation="border" /> : 'Оновити'}
-        </Button>
+      >
+        {loading ? <Spinner animation="border" /> : 'Оновити'}
+      </Button>
     </ButtonGroup>
   );
 }
