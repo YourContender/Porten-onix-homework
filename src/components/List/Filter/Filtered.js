@@ -33,6 +33,8 @@ function Filtered({
 export default Filtered;
 
 Filtered.propTypes = {
+  setLoading: PropTypes.func,
+  loading: PropTypes.bool,
   showModalWindow: PropTypes.func,
   filteredPriceMethod: PropTypes.func,
   filteredCountryMethod: PropTypes.func,
@@ -41,6 +43,8 @@ Filtered.propTypes = {
 };
 
 Filtered.defaultProps = { 
+  loading: false,
+  setLoading: () => null,
   showModalWindow: () => null,
   filteredCountryMethod: () => null,
   filteredPriceMethod: () => null,

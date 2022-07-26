@@ -1,25 +1,24 @@
-import React, { useState, useEffect, useContext} from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { cardsWatchList } from '../../store/watches/actions';
+import Request from '../../request';
 import Filtered from './Filter/Filtered';
 import CardWatch from './Card/CardWatch';
-import Request from '../../request';
 import ModalWindow from './ModalWindow/ModalWindow';
 import ThemeContext from '../../context/ThemeContext';
-import { cardsWatchList } from '../../store/watches/actions';
 import './ListProd.sass';
 
 function ListProd() {
   const [filtered, setFiltered] = useState([]);
   const [database, setDatabase] = useState([]);
-  const [showModal, setShowModal] = useState(false);
-  const [currentCard, setCurrentCard] = useState(null);
   const [newCard, setNewCard] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+  const [currentCard, setCurrentCard] = useState(null);
   
   const { themeColor } = useContext(ThemeContext); 
   const dispatch = useDispatch();
-  const listData = useSelector(state => state.viewWatches.data);
-  console.log(listData);
+  const listData = useSelector((state) => state.viewWatches.data);
 
   const data = new Request();
 
@@ -29,15 +28,15 @@ function ListProd() {
     data
       .getData()
       .then((res) => {
-        // setFiltered(res);
         setDatabase(res);
         setLoading(false);
-        dispatch(cardsWatchList(res))
+        dispatch(cardsWatchList(res));
+        setFiltered(listData); 
       });
   };
 
   useEffect(() => {
-    getRequest(); 
+    getRequest();
   }, []);
 
   const showModalWindow = () => {
@@ -143,7 +142,7 @@ function ListProd() {
 
         <div className="list_items">
           {
-            listData.map((item) => {
+            filtered.map((item) => {
               return (
                 <CardWatch 
                   dragStartHandler={dragStartHandler}

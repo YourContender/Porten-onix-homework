@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next'; 
 
 export default function FilterView({
-  showModalWindow, filterMethod, cancelFilterMethod, country, filterCountryMethod, getRequest, loading, setLoading
+  showModalWindow, filterMethod, cancelFilterMethod, country, filterCountryMethod, getRequest, loading
 }) {
   const { t } = useTranslation();
 
@@ -54,6 +54,8 @@ export default function FilterView({
 }
 
 FilterView.propTypes = { 
+  getRequest: PropTypes.func, 
+  loading: PropTypes.bool,
   showModalWindow: PropTypes.func, 
   filterMethod: PropTypes.func, 
   cancelFilterMethod: PropTypes.func, 
@@ -62,7 +64,9 @@ FilterView.propTypes = {
 };
 
 FilterView.defaultProps = { 
+  loading: false,
   country: [], 
+  getRequest: () => null, 
   showModalWindow: () => null, 
   filterMethod: () => null, 
   cancelFilterMethod: () => null, 

@@ -16,20 +16,18 @@ function Commercial() {
         </div>
         <div className="commercial">
           {
-            data.map(({ title, price, id }) => {
-              return (
-                <div className="commercial_item" key={id}>
-                  <div className="commercial_item_block">
-                    <img src={watch} alt="logo" />
-                  </div>
-                  <div className="commercial_item_text">
-                    <span>{title}</span>
-                    <br />
-                    <span>{price}</span>
-                  </div>
+            data.map(({ title, price, id }) => (
+              <div className="commercial_item" key={id}>
+                <div className="commercial_item_block">
+                  <img src={watch} alt="logo" />
                 </div>
-              );
-            })
+                <div className="commercial_item_text">
+                  <span>{title}</span>
+                  <br />
+                  <span>{price}</span>
+                </div>
+              </div>
+            ))
           }
         </div>
         <div>
