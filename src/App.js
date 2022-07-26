@@ -26,8 +26,8 @@ function App() {
   return (
     <ThemeContext.Provider value={value}>
       <Button />
-      <button onClick={() => changeLanguage('en')}>EN</button>
-      <button onClick={() => changeLanguage('ua')}>UA</button>
+      <button type="button" onClick={() => changeLanguage('en')}>EN</button>
+      <button type="button" onClick={() => changeLanguage('ua')}>UA</button>
       <Routes>
         <Route path="/" element={<HomePageComponent />} />
         <Route path="list" element={<ListPageComponent />} />

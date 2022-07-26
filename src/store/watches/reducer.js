@@ -15,7 +15,7 @@ const initState = {
   }]
 };
 
-const viewWatches = (state = initState, action) => {
+const viewWatches = (state = initState, action) => { // eslint-disable-line
   switch (action.type) {
     case GET_REQUEST:
       return {
